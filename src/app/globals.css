@@ -257,6 +257,22 @@ main > section:not(.booking-wrap), .site-footer { scroll-snap-align: start; }
 .experience-card h3 { margin-top: 19px; }
 .experience-card > p { max-width: 330px; margin-top: 8px; }
 
+.shop { background: var(--cream); }
+.shop > .section-title { margin-bottom: 40px; }
+.shop-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 22px; }
+.shop-card { min-width: 0; overflow: hidden; border: 1px solid var(--line); background: #fff; }
+.shop-card__image-wrap { position: relative; overflow: hidden; aspect-ratio: 4 / 3; background: #e7edff; }
+.shop-card__image { object-fit: cover; transition: transform .45s ease; }
+.shop-card:hover .shop-card__image { transform: scale(1.035); }
+.shop-card__image-label { position: absolute; right: 10px; bottom: 10px; padding: 4px 8px; background: rgb(255 255 255 / 92%); color: var(--ink-soft); font-size: 10px; }
+.shop-card__content { display: flex; min-height: 180px; flex-direction: column; align-items: flex-start; padding: 18px; }
+.shop-card__category { color: var(--primary); font-size: var(--font-size-caption); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+.shop-card__content h3 { margin: 6px 0; font-size: var(--font-size-card-title); }
+.shop-card__content p { margin: 0 0 12px; color: var(--ink-soft); font-size: var(--font-size-small); line-height: 1.65; }
+.shop-card__content strong { margin-top: auto; color: var(--primary); font-size: var(--font-size-small); }
+.shop-note { margin: 24px 0 0; color: var(--ink-soft); font-size: var(--font-size-small); text-align: center; }
+.shop-note a { color: var(--primary); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+
 .gallery-coverflow { width: 100%; overflow: visible; padding: 8px 0 48px !important; }
 .gallery-coverflow .swiper-slide { width: min(68vw, 680px); height: auto; }
 .gallery-coverflow__slide { position: relative; width: 100%; margin: 0; overflow: hidden; aspect-ratio: 4 / 3; background: #e7edff; }

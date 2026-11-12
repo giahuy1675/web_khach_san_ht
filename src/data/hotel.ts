@@ -145,6 +145,41 @@ export const experiences = [
   },
 ];
 
+export const shopProducts = [
+  {
+    name: "Hộp quà đặc sản Hà Tiên",
+    category: "Quà tặng",
+    description: "Gợi ý món quà mang hương vị miền biển Tây Nam.",
+    price: "350.000đ",
+    image: "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=800&q=80",
+    imageAlt: "Hộp quà được gói nơ",
+  },
+  {
+    name: "Cà phê River Hotel",
+    category: "Đồ uống",
+    description: "Một lựa chọn cho buổi sáng thư thả trong chuyến đi.",
+    price: "120.000đ",
+    image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80",
+    imageAlt: "Tách cà phê trên bàn",
+  },
+  {
+    name: "Túi du lịch River Hotel",
+    category: "Phụ kiện",
+    description: "Món đồ tiện dụng để mang theo trong hành trình.",
+    price: "180.000đ",
+    image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=800&q=80",
+    imageAlt: "Ba lô du lịch",
+  },
+  {
+    name: "Voucher nghỉ dưỡng",
+    category: "Trải nghiệm",
+    description: "Gợi ý quà tặng cho một kỳ nghỉ tại Hà Tiên.",
+    price: "1.500.000đ",
+    image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=80",
+    imageAlt: "Khu nghỉ dưỡng có hồ bơi",
+  },
+];
+
 export const gallery = [
   {
     alt: "Toàn cảnh khách sạn River bên bờ biển Hà Tiên",

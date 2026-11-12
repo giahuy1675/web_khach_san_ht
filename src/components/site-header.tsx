@@ -29,6 +29,7 @@ const serviceGroups = [
     title: "Khám phá",
     links: [
       { label: "Câu chuyện", href: "#about" },
+      { label: "Shop", href: "#shop" },
     ],
   },
 ];
@@ -39,6 +40,7 @@ const activeSectionMap: Record<string, string> = {
   restaurant: "#restaurant",
   "quote-title": "#experiences",
   experiences: "#experiences",
+  shop: "#experiences",
   location: "#location",
   "closing-title": "#location",
   booking: "#booking",
