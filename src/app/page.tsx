@@ -57,7 +57,13 @@ export default function Home() {
 
         <section aria-labelledby="about-title" className="about section-pad" id="about">
           <div className="about__image-wrap">
-            <div className="image-placeholder" aria-hidden="true">Ảnh khách sạn sẽ được cập nhật</div>
+            <Image
+              alt="River Hotel tại Hà Tiên"
+              className="about__image"
+              fill
+              sizes="(max-width: 760px) 90vw, 42vw"
+              src={publicAssetPath("/images/toan-canh-3.webp")}
+            />
             <div className="about__stamp">
               <span>Ở đây,</span>
               <strong>ngày chậm<br />lại một chút.</strong>
@@ -218,7 +224,13 @@ export default function Home() {
         </section>
 
         <section aria-labelledby="closing-title" className="closing">
-          <div className="closing__placeholder" aria-hidden="true" />
+          <Image
+            alt=""
+            className="closing__image"
+            fill
+            sizes="100vw"
+            src={publicAssetPath("/images/DELUXE-DOUBLE-SEA-VIEW-1-770x550.png")}
+          />
           <div className="closing__shade" />
           <div className="closing__content">
             <span className="eyebrow eyebrow--light">RIVER HOTEL ĐANG CHỜ BẠN</span>

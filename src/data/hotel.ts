@@ -127,21 +127,21 @@ export const experiences = [
     title: "Nghỉ ngơi trọn vẹn",
     description:
       "Tạm gác nhịp sống bận rộn, dành thời gian thư giãn trong không gian nghỉ dưỡng tại River Hotel.",
-    image: "",
+    image: publicAssetPath("/images/FAMILY-RIVER-VIEW-1-770x550.png"),
   },
   {
     number: "02",
     title: "Nếm vị địa phương",
     description:
       "Thưởng thức món ngon địa phương và những hương vị đặc trưng của vùng biển Tây Nam.",
-    image: "",
+    image: publicAssetPath("/images/nha-hang.webp"),
   },
   {
     number: "03",
     title: "Khám phá Hà Tiên",
     description:
       "Khám phá những bãi biển, điểm tham quan và nét duyên riêng của Hà Tiên cùng vùng biển Tây Nam.",
-    image: "",
+    image: publicAssetPath("/images/travel-beach.webp"),
   },
 ];
 
