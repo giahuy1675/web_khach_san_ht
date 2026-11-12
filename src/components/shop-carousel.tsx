@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { A11y, Navigation, Pagination } from "swiper/modules";
+import { A11y, FreeMode, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { shopProducts } from "@/data/hotel";
 
@@ -15,7 +15,8 @@ export function ShopCarousel() {
         1000: { slidesPerView: 3, spaceBetween: 22 },
       }}
       className="shop-carousel"
-      modules={[A11y, Navigation, Pagination]}
+      freeMode={{ enabled: true, sticky: false }}
+      modules={[A11y, FreeMode, Navigation, Pagination]}
       navigation
       pagination={{ clickable: true }}
       slidesPerGroup={1}
