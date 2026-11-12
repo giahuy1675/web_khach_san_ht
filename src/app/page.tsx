@@ -25,15 +25,15 @@ export default function Home() {
           />
           <div className="hero__shade" />
           <div className="hero__content">
-            <span className="eyebrow eyebrow--light">MỘT CHỐN DỪNG CHÂN Ở HỘI AN</span>
+            <span className="eyebrow eyebrow--light">ĐIỂM DỪNG CHÂN GIỮA LÒNG HÀ TIÊN</span>
             <h1 id="hero-title">
               Chạm vào
               <br />
               <em>nhịp sống</em> an yên.
             </h1>
-            <p>Một khoảng nghỉ dịu dàng, nơi những điều bình thường trở nên đáng nhớ.</p>
+            <p>Tìm khoảng nghỉ dễ chịu, khám phá thành phố biển Hà Tiên theo cách của riêng bạn.</p>
             <a className="button button--light" href="#about">
-              Khám phá Mộc An <Icon name="arrow" />
+              Khám phá River Hotel <Icon name="arrow" />
             </a>
           </div>
           <div className="hero__caption">
@@ -63,24 +63,25 @@ export default function Home() {
             </div>
           </div>
           <div className="about__content">
-            <span className="eyebrow">CÂU CHUYỆN MỘC AN</span>
+            <span className="eyebrow">CÂU CHUYỆN RIVER HOTEL</span>
             <h2 id="about-title">
-              Nơi bình yên
+              Kỳ nghỉ thư thái
               <br />
-              <em>ở lại thật lâu.</em>
+              <em>giữa lòng Hà Tiên.</em>
             </h2>
             <p>
-              Nép mình bên dòng Hoài yên ả, Mộc An là lời mời bạn tạm rời những
-              vội vã để tận hưởng Hội An theo cách thật chậm. Từng góc nhỏ được
-              chăm chút bằng sự mộc mạc, ấm áp và lòng hiếu khách chân thành.
+              Tọa lạc tại Hà Tiên, River Hotel là điểm dừng chân thuận tiện để nghỉ ngơi,
+              thưởng thức ẩm thực và khám phá thành phố biển cùng vùng biển Tây Nam.
+              Chúng tôi mong muốn mang đến không gian thoải mái và sự đón tiếp chu đáo
+              cho mỗi hành trình.
             </p>
             <a className="text-link" href="#experiences">
               Tìm hiểu câu chuyện <Icon name="arrow" />
             </a>
             <div className="about__facts">
-              <div><strong>12</strong><span>phút đi bộ<br />đến phố cổ</span></div>
-              <div><strong>18</strong><span>phòng nghỉ<br />được chăm chút</span></div>
-              <div><strong>01</strong><span>khoảng trời<br />dành riêng bạn</span></div>
+              <div><strong>HÀ TIÊN</strong><span>thành phố biển<br />miền Tây Nam</span></div>
+              <div><strong>PHÒNG</strong><span>nhiều lựa chọn<br />cho chuyến đi</span></div>
+              <div><strong>ẨM THỰC</strong><span>hương vị địa phương<br />đang chờ bạn</span></div>
             </div>
           </div>
         </section>
@@ -139,7 +140,7 @@ export default function Home() {
             <br />
             chỉ cần tìm đúng nơi để <em>lòng mình nghỉ ngơi.</em>
           </p>
-          <span className="quote-band__caption">MỘC AN · HỘI AN</span>
+          <span className="quote-band__caption">RIVER HOTEL · HÀ TIÊN</span>
         </section>
 
         <section aria-labelledby="experiences-title" className="experiences section-pad" id="experiences">
@@ -147,7 +148,7 @@ export default function Home() {
             id="experiences-title"
             description="Những khoảnh khắc nhỏ góp thành một kỳ nghỉ thật trọn vẹn."
             eyebrow="SỐNG TRỌN TỪNG KHOẢNH KHẮC"
-            title="Hội An, theo nhịp của bạn."
+            title="Hà Tiên, theo nhịp của bạn."
           />
           <div className="experience-grid">
             {experiences.map((experience) => (
@@ -209,8 +210,8 @@ export default function Home() {
           <div className="closing__placeholder" aria-hidden="true" />
           <div className="closing__shade" />
           <div className="closing__content">
-            <span className="eyebrow eyebrow--light">MỘC AN ĐANG CHỜ BẠN</span>
-            <h2 id="closing-title">Hẹn bạn ở<br /><em>Hội An nhé.</em></h2>
+            <span className="eyebrow eyebrow--light">RIVER HOTEL ĐANG CHỜ BẠN</span>
+            <h2 id="closing-title">Hẹn bạn ở<br /><em>Hà Tiên nhé.</em></h2>
             <a className="button button--light" href="#booking">
               Lên kế hoạch nghỉ dưỡng <Icon name="arrow" />
             </a>

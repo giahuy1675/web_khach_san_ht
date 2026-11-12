@@ -14,9 +14,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Mộc An Boutique Hotel | Chạm vào nhịp sống Hội An",
+  title: "River Hotel Hà Tiên | Nghỉ dưỡng giữa lòng Hà Tiên",
   description:
-    "Một chốn nghỉ nhỏ đầy bình yên giữa lòng Hội An. Khám phá phòng nghỉ, trải nghiệm và những điều thân thương tại Mộc An Boutique Hotel.",
+    "River Hotel Hà Tiên là điểm dừng chân để nghỉ ngơi, thưởng thức ẩm thực và khám phá thành phố biển Hà Tiên.",
 };
 
 export default function RootLayout({

@@ -1,6 +1,6 @@
-# Mộc An Boutique Hotel
+# River Hotel Hà Tiên
 
-Frontend starter for a Vietnamese boutique-hotel website, built with Next.js App Router, TypeScript, and CSS.
+Website giới thiệu River Hotel tại Hà Tiên, xây dựng bằng Next.js App Router, TypeScript và CSS.
 
 ## Run locally
 
@@ -23,9 +23,9 @@ The site URL will be `https://giahuy1675.github.io/web_khach_san_ht/`.
 
 - `src/app/` — app layout, page composition, global responsive styles
 - `src/components/` — reusable site header, booking form, room card, icons, and section heading
-- `src/data/hotel.ts` — sample hotel, room, experience, and gallery content
-- `public/images/` — add the hotel's own photos here
+- `src/data/hotel.ts` — thông tin khách sạn, phòng nghỉ, trải nghiệm và thư viện ảnh
+- `public/images/` — logo và hình ảnh khách sạn
 
-The image folder is intentionally empty until the hotel photos are provided. Add the image files under `public/images/`; then update their `/images/...` paths in `src/data/hotel.ts` and `src/app/page.tsx`. The layout displays gentle placeholders until images are connected. The booking form is currently a frontend-only demo and does not submit or reserve a room.
+Thay ảnh trong `public/images/` bằng hình ảnh chính thức của khách sạn khi cần; cập nhật đường dẫn ảnh trong `src/data/hotel.ts` và `src/app/page.tsx`. Một số khu vực vẫn dùng ảnh chờ cập nhật. Form đặt phòng hiện chỉ là giao diện minh họa, chưa gửi yêu cầu đặt phòng.
 
 The gallery uses CSS horizontal scroll snap. The layout is mobile-first and includes a responsive navigation menu. Booking availability, guest management, and payment should be connected to a backend when those features are ready.

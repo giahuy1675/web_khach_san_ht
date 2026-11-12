@@ -1,8 +1,8 @@
 import { publicAssetPath } from "@/lib/public-asset";
 
 export const hotel = {
-  name: "Mộc An",
-  fullName: "Mộc An Boutique Hotel",
+  name: "River Hotel",
+  fullName: "River Hotel Hà Tiên",
   location: "Hà Tiên, An Giang",
   address: "Trường Sa, Lô B3, TTTM Trần Hầu, Phường Hà Tiên, Tỉnh An Giang",
   coordinates: "10.37998285209119, 104.48647407116414",
@@ -124,23 +124,23 @@ export const rooms = [
 export const experiences = [
   {
     number: "01",
-    title: "Chậm một nhịp",
+    title: "Nghỉ ngơi trọn vẹn",
     description:
-      "Thả mình bên hồ bơi xanh mát, nhâm nhi tách trà và để ngày trôi thật khẽ.",
+      "Tạm gác nhịp sống bận rộn, dành thời gian thư giãn trong không gian nghỉ dưỡng tại River Hotel.",
     image: "",
   },
   {
     number: "02",
     title: "Nếm vị địa phương",
     description:
-      "Bắt đầu buổi sáng với món ngon miền Trung từ những nguyên liệu tươi theo mùa.",
+      "Thưởng thức món ngon địa phương và những hương vị đặc trưng của vùng biển Tây Nam.",
     image: "",
   },
   {
     number: "03",
-    title: "Chạm vào phố cổ",
+    title: "Khám phá Hà Tiên",
     description:
-      "Tản bộ qua những con phố vàng, khám phá Hội An theo cách rất riêng của bạn.",
+      "Khám phá những bãi biển, điểm tham quan và nét duyên riêng của Hà Tiên cùng vùng biển Tây Nam.",
     image: "",
   },
 ];

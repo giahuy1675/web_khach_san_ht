@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: RoomPageProps): Promise<Metad
 
   return {
     title: room ? `${room.name} | ${hotel.fullName}` : `Phòng nghỉ | ${hotel.fullName}`,
-    description: room?.description ?? "Thông tin chi tiết phòng nghỉ tại Mộc An Boutique Hotel.",
+    description: room?.description ?? `Thông tin chi tiết phòng nghỉ tại ${hotel.fullName}.`,
   };
 }
 
