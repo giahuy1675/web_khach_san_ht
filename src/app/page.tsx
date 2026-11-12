@@ -3,9 +3,10 @@ import { BookingForm } from "@/components/booking-form";
 import { Icon } from "@/components/icons";
 import { RoomCarousel } from "@/components/room-carousel";
 import { SectionTitle } from "@/components/section-title";
+import { ShopCarousel } from "@/components/shop-carousel";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { experiences, hotel, shopProducts } from "@/data/hotel";
+import { experiences, hotel } from "@/data/hotel";
 import { publicAssetPath } from "@/lib/public-asset";
 
 export default function Home() {
@@ -170,37 +171,12 @@ export default function Home() {
 
         <section aria-labelledby="shop-title" className="shop section-pad" id="shop">
           <SectionTitle
-            description="Sản phẩm, hình ảnh và giá bên dưới chỉ là nội dung minh họa; Shop hiện chưa nhận đơn trực tuyến."
             eyebrow="SHOP RIVER HOTEL"
             id="shop-title"
-            title="Một chút Hà Tiên mang về."
+            title="Sản phẩm River Hotel"
           />
-          <div className="shop-grid">
-            {shopProducts.map((product) => (
-              <article className="shop-card" key={product.name}>
-                <div className="shop-card__image-wrap">
-                  <Image
-                    alt={product.imageAlt}
-                    className="shop-card__image"
-                    fill
-                    sizes="(max-width: 720px) 90vw, (max-width: 1100px) 45vw, 25vw"
-                    src={product.image}
-                    unoptimized
-                  />
-                  <span className="shop-card__image-label">Ảnh minh họa</span>
-                </div>
-                <div className="shop-card__content">
-                  <span className="shop-card__category">{product.category}</span>
-                  <h3>{product.name}</h3>
-                  <p>{product.description}</p>
-                  <strong>Giá mẫu: {product.price}</strong>
-                </div>
-              </article>
-            ))}
-          </div>
-          <p className="shop-note">
-            Muốn tìm hiểu thêm? <a href={`tel:${hotel.phone.replaceAll(" ", "")}`}>Liên hệ River Hotel</a>
-          </p>
+          <ShopCarousel />
+          <p className="shop-note">Sản phẩm và giá chỉ mang tính minh họa.</p>
         </section>
 
         <section aria-labelledby="location-title" className="location section-pad" id="location">
