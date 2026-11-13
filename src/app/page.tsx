@@ -14,6 +14,15 @@ export default function Home() {
       <SiteHeader />
       <main>
         <section aria-labelledby="hero-title" className="hero" id="home">
+          <Image
+            alt=""
+            aria-hidden="true"
+            className="hero__poster"
+            fill
+            priority
+            sizes="100vw"
+            src={publicAssetPath("/images/toan-canh-3.webp")}
+          />
           <iframe
             allow="autoplay; encrypted-media; picture-in-picture; web-share"
             allowFullScreen
@@ -93,7 +102,17 @@ export default function Home() {
         </section>
 
         <section aria-labelledby="rooms-title" className="rooms section-pad" id="rooms">
-          <h2 className="rooms__title" id="rooms-title">Phòng nghỉ</h2>
+          <div className="section-heading-row">
+            <SectionTitle
+              id="rooms-title"
+              description="Giá và thông tin phòng hiện là dữ liệu minh họa để xem giao diện; vui lòng xác nhận với khách sạn trước khi đặt."
+              eyebrow="HỆ THỐNG PHÒNG ĐA DẠNG"
+              title="Tìm căn phòng phù hợp với bạn."
+            />
+            <a className="text-link section-heading-row__link" href="#booking">
+              Xem tất cả phòng <Icon name="arrow" />
+            </a>
+          </div>
           <RoomCarousel />
         </section>
 
