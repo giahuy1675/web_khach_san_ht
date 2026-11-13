@@ -121,12 +121,12 @@ main > section:not(.booking-wrap), .site-footer { scroll-snap-align: start; }
 .text-link svg { width: 15px; height: 15px; transition: transform .2s; }
 .text-link:hover svg { transform: translateX(4px); }
 .about__content > .text-link { margin-top: 22px; }
-.about__facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 49px; padding-top: 23px; border-top: 1px solid var(--line); }
+.about__facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 49px; padding-top: 23px; border-top: 1px solid var(--line); }
 .about__facts > div { display: flex; align-items: center; gap: 11px; }
 .about__facts strong { font-size: 1.6875rem; font-weight: 500; }
 .about__facts span { color: #64748b; font-size: var(--font-size-caption); line-height: 1.6; }
 
-.rooms { background: var(--cream); }
+.rooms { overflow-x: clip; background: var(--cream); }
 .section-heading-row { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 39px; }
 .section-title h2 { margin: 12px 0 10px; font-size: var(--font-size-section-title); letter-spacing: -.035em; line-height: 1.12; }
 .section-title > p { max-width: 440px; margin: 0; color: var(--ink-soft); font-size: var(--font-size-small); line-height: 1.8; }
@@ -400,7 +400,7 @@ main > section:not(.booking-wrap), .site-footer { scroll-snap-align: start; }
   .booking-submit { width: 100%; }
   .booking-message { top: calc(100% + 6px); line-height: 1.5; }
   .section-pad { padding: 80px 7%; }
-  .about { grid-template-columns: 1fr; gap: 47px; padding-top: 80px; padding-bottom: 85px; }
+  .about { grid-template-columns: minmax(0, 1fr); gap: 47px; padding-top: 80px; padding-bottom: 85px; }
   .about__image-wrap { min-height: 420px; width: calc(100% - 13px); }
   .about__stamp { right: -13px; bottom: 22px; width: 140px; height: 140px; }
   .about__content { padding: 0; }
