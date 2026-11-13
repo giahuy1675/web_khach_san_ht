@@ -3,7 +3,6 @@ import { BookingForm } from "@/components/booking-form";
 import { Icon } from "@/components/icons";
 import { RoomCarousel } from "@/components/room-carousel";
 import { SectionTitle } from "@/components/section-title";
-import { ShopCarousel } from "@/components/shop-carousel";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { experiences, hotel } from "@/data/hotel";
@@ -179,10 +178,9 @@ export default function Home() {
           <SectionTitle
             eyebrow="SHOP RIVER HOTEL"
             id="shop-title"
-            title="Sản phẩm River Hotel"
+            title="Shop River Hotel"
           />
-          <ShopCarousel />
-          <p className="shop-note">Sản phẩm và giá chỉ mang tính minh họa.</p>
+          <p className="shop__message">Không gian mua sắm của River Hotel đang được phát triển. Hẹn gặp bạn sớm.</p>
         </section>
 
         <section aria-labelledby="location-title" className="location section-pad" id="location">
