@@ -131,26 +131,23 @@ main > section:not(.booking-wrap), .site-footer { scroll-snap-align: start; }
 .section-title h2 { margin: 12px 0 10px; font-size: var(--font-size-section-title); letter-spacing: -.035em; line-height: 1.12; }
 .section-title > p { max-width: 440px; margin: 0; color: var(--ink-soft); font-size: var(--font-size-small); line-height: 1.8; }
 .section-heading-row__link { flex-shrink: 0; margin-bottom: 5px; }
-.room-carousel { overflow: hidden; padding: 0 0 44px !important; }
-.room-carousel .swiper-slide { height: auto; }
-.room-card { min-width: 0; height: 100%; }
-.room-card__image-link { position: relative; display: block; overflow: hidden; aspect-ratio: 1.16 / 1; background: #e7edff; }
-.room-card__image { object-fit: cover; transition: transform .55s; }
-.room-card__image-link:hover .room-card__image { transform: scale(1.04); }
-.room-card__arrow { position: absolute; right: 13px; bottom: 13px; display: grid; width: 35px; height: 35px; place-items: center; background: #fff; font-size: 17px; }
-.room-card__content { padding-top: 16px; }
-.room-card__heading h3, .experience-card h3 { margin: 0; font-size: var(--font-size-card-title); }
-.room-card__heading h3 a:hover { color: var(--primary); }
-.room-card__content > p, .experience-card > p { min-height: 36px; margin: 8px 0 11px; color: var(--ink-soft); font-size: var(--font-size-label); line-height: 1.8; }
-.room-card__details { display: flex; min-height: 34px; flex-direction: column; align-items: flex-start; gap: 8px; padding-top: 11px; border-top: 1px solid var(--line); font-size: var(--font-size-caption); }
-.room-card__price { color: var(--primary); font-size: var(--font-size-body); font-weight: 700; }
-.room-card__price span { color: var(--muted); font-size: 10px; font-weight: 400; }
-.room-card__view { display: inline-flex; align-items: center; gap: 5px; color: var(--ink-soft); }
-.room-card__specs { display: flex; flex-wrap: wrap; gap: 6px 12px; color: var(--ink-soft); }
-.room-card__amenities { color: var(--muted); font-size: 10px; line-height: 1.5; }
-.room-card__details > a { display: inline-flex; min-height: 30px; align-items: center; gap: 6px; color: var(--primary); font-weight: 600; transition: color .2s ease; }
-.room-card__details > a:hover { color: var(--ink); }
-.room-card__details svg { width: 14px; height: 14px; flex: 0 0 14px; }
+.room-carousel { overflow: visible; padding: 8px 0 48px !important; }
+.room-carousel .swiper-slide { width: min(78vw, 420px); height: auto; }
+.room-carousel__card { position: relative; width: 100%; overflow: hidden; aspect-ratio: 4 / 3; background: var(--ink); }
+.room-carousel__link { position: relative; display: block; width: 100%; height: 100%; color: #fff; }
+.room-carousel__image { object-fit: cover; transition: transform .55s; }
+.room-carousel__link:hover .room-carousel__image { transform: scale(1.04); }
+.room-carousel__shade { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 25%, rgb(12 22 47 / 86%) 100%); }
+.room-carousel__content { position: absolute; right: 22px; bottom: 22px; left: 22px; display: flex; flex-direction: column; gap: 8px; }
+.room-carousel__content h3 { margin: 0; font-size: clamp(1.25rem, 2.4vw, 1.8rem); line-height: 1.2; }
+.room-carousel__content p { margin: 0; color: rgb(255 255 255 / 84%); font-size: var(--font-size-small); line-height: 1.6; }
+.room-carousel__details { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; margin-top: 3px; font-size: var(--font-size-caption); }
+.room-carousel__details strong { font-size: var(--font-size-body); }
+.room-carousel__details small { font-size: var(--font-size-caption); font-weight: 400; }
+.room-carousel__detail-link { display: inline-flex; align-items: center; gap: 7px; font-size: var(--font-size-caption); font-weight: 600; }
+.room-carousel__detail-link svg { width: 14px; height: 14px; }
+.experience-card h3 { margin: 0; font-size: var(--font-size-card-title); }
+.experience-card > p { min-height: 36px; margin: 8px 0 11px; color: var(--ink-soft); font-size: var(--font-size-label); line-height: 1.8; }
 .room-detail { padding: 82px 10.2% 90px; background: var(--cream); }
 .room-detail__breadcrumb { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; margin-bottom: 24px; color: var(--muted); font-size: var(--font-size-caption); }
 .room-detail__breadcrumb a:hover { color: var(--primary); }
@@ -222,9 +219,6 @@ main > section:not(.booking-wrap), .site-footer { scroll-snap-align: start; }
 .room-detail__related-copy strong { font-size: var(--font-size-caption); line-height: 1.5; }
 .room-detail__related-copy > span { color: var(--muted); font-size: 10px; }
 .room-detail__related-card > svg { width: 15px; height: 15px; color: var(--primary); }
-.room-carousel .swiper-button-prev, .room-carousel .swiper-button-next { width: 38px; height: 38px; border-radius: 50%; background: #fff; color: var(--primary); box-shadow: 0 3px 14px rgb(23 37 84 / 16%); }
-.room-carousel .swiper-button-prev::after, .room-carousel .swiper-button-next::after { font-size: 13px; font-weight: 700; }
-.room-carousel .swiper-button-disabled { opacity: .35; }
 .room-carousel .swiper-pagination { bottom: 8px !important; }
 .room-carousel .swiper-pagination-bullet-active { background: var(--primary); }
 
@@ -416,10 +410,7 @@ main > section:not(.booking-wrap), .site-footer { scroll-snap-align: start; }
   .section-heading-row { align-items: flex-start; flex-direction: column; gap: 12px; margin-bottom: 27px; }
   .section-title h2 { max-width: 410px; }
   .section-title > p { max-width: 380px; }
-  .room-carousel .swiper-button-prev, .room-carousel .swiper-button-next { width: 32px; height: 32px; }
-  .room-carousel .swiper-button-prev::after, .room-carousel .swiper-button-next::after { font-size: 11px; }
-  .room-card__image-link { aspect-ratio: 1.18 / 1; }
-  .room-card__content > p { min-height: 0; }
+  .room-carousel__content { right: 15px; bottom: 15px; left: 15px; gap: 6px; }
   .room-detail { padding: 72px 7% 76px; }
   .room-detail__breadcrumb { margin-bottom: 18px; }
   .room-detail__gallery { gap: 7px; }
