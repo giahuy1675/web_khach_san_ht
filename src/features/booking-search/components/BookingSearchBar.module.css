@@ -1,0 +1,322 @@
+.tabsOuter {
+  width: min(1398px, calc(100vw - 32px));
+  margin: 0 0 0 max(16px, calc((100vw - 1398px) / 2));
+}
+
+.tabs {
+  display: flex;
+  min-height: 42px;
+  align-items: stretch;
+}
+
+.activeTab,
+.inactiveTab {
+  display: flex;
+  min-width: 154px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e6e6e6;
+  padding: 0 24px;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.activeTab {
+  border-bottom-color: var(--color-background);
+  background: var(--color-background);
+}
+
+.inactiveTab {
+  margin-left: -1px;
+  background: #f7f7f7;
+  color: var(--color-muted);
+}
+
+.searchSlot {
+  position: relative;
+}
+
+.searchForm {
+  position: relative;
+  display: grid;
+  width: min(1398px, calc(100vw - 32px));
+  min-height: 84px;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) 210px;
+  margin: 0 0 0 max(16px, calc((100vw - 1398px) / 2));
+  border: 1px solid #e4e4e4;
+  background: var(--color-background);
+  box-shadow: 0 7px 18px rgb(0 0 0 / 9%);
+}
+
+.pinned {
+  position: fixed;
+  z-index: 4;
+  top: calc(var(--spacing-header) + 1px);
+  left: 0;
+  width: 100%;
+  max-width: none;
+  min-height: 56px;
+  grid-template-columns: 1.2fr 0.8fr 1.1fr 1fr 0.75fr;
+  margin: 0;
+  border-right: 0;
+  border-left: 0;
+  background: #f7f7f7;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 8%);
+}
+
+.popoverOpen {
+  z-index: 21;
+}
+
+.animated {
+  transition: transform 380ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.field {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 12px;
+  border-right: 1px solid #e8e8e8;
+  padding: 0 clamp(16px, 2.2vw, 40px);
+}
+
+.field > svg {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.5;
+}
+
+.fieldButton {
+  justify-content: flex-start;
+  border-top: 0;
+  border-bottom: 0;
+  border-left: 0;
+  background: transparent;
+  color: var(--color-ink);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+}
+
+.fieldButton > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fieldButton:hover {
+  background: #fafafa;
+}
+
+.field input,
+.field select {
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--color-ink);
+  font: inherit;
+  font-size: 16px;
+}
+
+.field input:focus-visible,
+.field select:focus-visible {
+  outline: 1px solid var(--color-muted);
+  outline-offset: 3px;
+}
+
+.destinationField input,
+.discountField input {
+  width: 100%;
+}
+
+.dateField {
+  gap: 10px;
+}
+
+.dateField label {
+  min-width: 0;
+}
+
+.dateField input {
+  width: 100%;
+  font-size: 15px;
+}
+
+.dateSeparator,
+.guestSeparator {
+  flex: 0 0 auto;
+  color: var(--color-muted);
+}
+
+.guestsField {
+  gap: 8px;
+}
+
+.guestsField select {
+  width: auto;
+  max-width: 100%;
+  appearance: none;
+  cursor: pointer;
+}
+
+.searchButton {
+  align-self: center;
+  min-height: 70px;
+  margin: 0 15px;
+  border: 0;
+  background: #938b83;
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 16px;
+  transition: background-color 160ms ease;
+}
+
+.searchButton:hover,
+.searchButton:focus-visible {
+  background: #756d65;
+}
+
+.searchButton:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 2px;
+}
+
+.pinned .field {
+  min-height: 56px;
+  border-bottom: 0;
+  padding-right: clamp(12px, 2vw, 32px);
+  padding-left: clamp(12px, 2vw, 32px);
+}
+
+.pinned .fieldButton {
+  background: transparent;
+}
+
+.pinned .searchButton {
+  min-height: 56px;
+  margin: 0;
+  background: transparent;
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.pinned .searchButton:hover,
+.pinned .searchButton:focus-visible {
+  background: #ededed;
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+@media (max-width: 1100px) {
+  .searchForm {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .field {
+    min-height: 76px;
+    border-bottom: 1px solid #e8e8e8;
+    padding-right: 22px;
+    padding-left: 22px;
+  }
+
+  .dateField,
+  .discountField {
+    border-right: 0;
+  }
+
+  .searchButton {
+    min-height: 58px;
+    grid-column: 1 / -1;
+    margin: 12px;
+  }
+
+  .pinned {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pinned .searchButton {
+    min-height: 50px;
+    margin: 8px;
+  }
+}
+
+@media (max-width: 600px) {
+  .tabsOuter,
+  .searchForm:not(.pinned) {
+    width: calc(100% - 32px);
+  }
+
+  .tabs {
+    min-height: 44px;
+  }
+
+  .activeTab,
+  .inactiveTab {
+    min-width: 0;
+    padding: 0 14px;
+    font-size: 13px;
+  }
+
+  .pinned {
+    top: calc(var(--spacing-header-mobile) + 1px);
+    width: 100%;
+  }
+
+  .field {
+    min-height: 68px;
+    gap: 8px;
+    padding: 0 12px;
+  }
+
+  .field > svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .field input,
+  .field select,
+  .dateField input {
+    font-size: 13px;
+  }
+
+  .dateField {
+    gap: 5px;
+  }
+}
+
+@media (max-width: 390px) {
+  .searchForm:not(.pinned) {
+    grid-template-columns: 1fr;
+  }
+
+  .pinned {
+    grid-template-columns: 1fr;
+  }
+
+  .field {
+    border-right: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animated {
+    transition: none;
+  }
+}

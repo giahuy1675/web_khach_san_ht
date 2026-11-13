@@ -1,3 +1,6 @@
+@import "tailwindcss";
+@import "../styles/tokens.css";
+
 * {
   box-sizing: border-box;
 }
@@ -9,41 +12,8 @@ body {
 
 body {
   margin: 0;
-  background: #fff;
-  color: #171717;
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-background);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
-}
-
-.start {
-  display: grid;
-  min-height: 100svh;
-  place-items: center;
-  padding: 32px;
-}
-
-.start__content {
-  width: min(100%, 640px);
-}
-
-.start__eyebrow {
-  margin: 0 0 16px;
-  color: #737373;
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-}
-
-.start h1 {
-  margin: 0;
-  font-size: clamp(2rem, 7vw, 4rem);
-  font-weight: 500;
-  letter-spacing: -0.05em;
-  line-height: 1.05;
-}
-
-.start__description {
-  margin: 20px 0 0;
-  color: #737373;
-  font-size: 1rem;
-  line-height: 1.6;
 }

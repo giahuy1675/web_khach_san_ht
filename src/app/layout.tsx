@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import { siteConfig } from "@/config/site";
+import SiteLayout from "@/shared/components/layout/SiteLayout";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "River Hotel Hà Tiên",
-  description: "Website River Hotel Hà Tiên.",
+  title: siteConfig.name,
+  description: siteConfig.description,
 };
 
 export default function RootLayout({
@@ -13,7 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi">
-      <body>{children}</body>
+      <body>
+        <SiteLayout>{children}</SiteLayout>
+      </body>
     </html>
   );
 }

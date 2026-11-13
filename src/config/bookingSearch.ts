@@ -1,0 +1,21 @@
+export const bookingSearchConfig = {
+  tabsLabel: "Loại hình đặt phòng",
+  tabs: {
+    hotel: "Khách sạn",
+    package: "Khách sạn + Chuyến bay",
+  },
+  destinationLabel: "Điểm đến",
+  destination: "River Hotel Hà Tiên",
+  checkInLabel: "Ngày nhận phòng",
+  checkOutLabel: "Ngày trả phòng",
+  datePlaceholder: "Đến – Rời đi",
+  datePlaceholderEnd: "Rời đi",
+  roomsLabel: "Số phòng",
+  roomUnit: "Phòng",
+  guestsLabel: "Số người lớn",
+  guestUnit: "Người lớn",
+  childUnit: "Trẻ em",
+  discountLabel: "Mã giảm giá",
+  searchLabel: "Tìm kiếm",
+  editLabel: "Chỉnh sửa tìm kiếm",
+} as const;
