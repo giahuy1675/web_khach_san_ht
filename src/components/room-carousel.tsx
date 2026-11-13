@@ -5,7 +5,6 @@ import Link from "next/link";
 import { A11y, EffectCoverflow, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { rooms } from "@/data/hotel";
-import { Icon } from "@/components/icons";
 
 export function RoomCarousel() {
   return (
@@ -28,35 +27,20 @@ export function RoomCarousel() {
       a11y={{ enabled: true }}
     >
       {rooms.map((room) => (
-        <SwiperSlide key={room.name}>
-          <article className="room-carousel__card">
-            <Link
-              aria-label={`Xem chi tiết ${room.name}`}
-              className="room-carousel__link"
-              href={`/rooms/${room.slug}`}
-            >
-              <Image
-                alt={room.name}
-                className="room-carousel__image"
-                fill
-                sizes="(max-width: 760px) 78vw, 420px"
-                src={room.image}
-              />
-              <span aria-hidden="true" className="room-carousel__shade" />
-              <div className="room-carousel__content">
-                <span className="eyebrow eyebrow--light">PHÒNG NGHỈ RIVER HOTEL</span>
-                <h3>{room.name}</h3>
-                <p>{room.description}</p>
-                <div className="room-carousel__details">
-                  <strong>{room.samplePrice}<small> / đêm · giá mẫu</small></strong>
-                  <span>{room.sampleSize} · {room.sampleGuests}</span>
-                </div>
-                <span className="room-carousel__detail-link">
-                  Xem chi tiết phòng <Icon name="arrow" />
-                </span>
-              </div>
-            </Link>
-          </article>
+        <SwiperSlide key={room.slug}>
+          <Link
+            aria-label={`Xem chi tiết ${room.name}`}
+            className="room-carousel__card"
+            href={`/rooms/${room.slug}`}
+          >
+            <Image
+              alt={room.name}
+              className="room-carousel__image"
+              fill
+              sizes="(max-width: 760px) 78vw, 420px"
+              src={room.image}
+            />
+          </Link>
         </SwiperSlide>
       ))}
     </Swiper>

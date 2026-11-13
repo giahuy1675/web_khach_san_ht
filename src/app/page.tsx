@@ -93,17 +93,7 @@ export default function Home() {
         </section>
 
         <section aria-labelledby="rooms-title" className="rooms section-pad" id="rooms">
-          <div className="section-heading-row">
-            <SectionTitle
-              id="rooms-title"
-              description="Giá và thông tin phòng hiện là dữ liệu minh họa để xem giao diện; vui lòng xác nhận với khách sạn trước khi đặt."
-              eyebrow="HỆ THỐNG PHÒNG ĐA DẠNG"
-              title="Tìm căn phòng phù hợp với bạn."
-            />
-            <a className="text-link section-heading-row__link" href="#booking">
-              Xem tất cả phòng <Icon name="arrow" />
-            </a>
-          </div>
+          <h2 className="rooms__title" id="rooms-title">Phòng nghỉ</h2>
           <RoomCarousel />
         </section>
 
