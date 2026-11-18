@@ -1,7 +1,7 @@
 .backdrop {
   --mega-menu-width: 1520px;
-  --mega-menu-height: 442px;
-  --mega-menu-bar-height: 58px;
+  --mega-menu-height: 440px;
+  --mega-menu-bar-height: 60px;
 
   position: fixed;
   z-index: 20;
@@ -19,8 +19,8 @@
   height: var(--mega-menu-bar-height);
   min-height: var(--mega-menu-bar-height);
   align-items: center;
-  gap: clamp(20px, 2.5vw, 42px);
-  padding: 0 3%;
+  gap: 30px;
+  padding: 0 40px;
   background: #080808;
   color: #fff;
 }
@@ -28,7 +28,7 @@
 .closeButton {
   display: grid;
   width: 32px;
-  height: 40px;
+  height: 36px;
   flex: 0 0 auto;
   place-items: center;
   border: 0;
@@ -39,8 +39,8 @@
 }
 
 .closeButton svg {
-  width: 30px;
-  height: 30px;
+  width: 26px;
+  height: 26px;
   fill: none;
   stroke: currentColor;
   stroke-width: 1.25;
@@ -50,7 +50,7 @@
   flex: 0 0 auto;
   color: inherit;
   font-family: var(--font-brand);
-  font-size: 27px;
+  font-size: 24px;
   letter-spacing: 0.16em;
   text-decoration: none;
 }
@@ -59,12 +59,16 @@
   display: flex;
   min-width: 0;
   align-items: center;
-  gap: clamp(20px, 3vw, 46px);
+  gap: 36px;
 }
 
 .topNavigationLink {
   position: relative;
-  padding: 28px 0 24px;
+  display: flex;
+  height: var(--mega-menu-bar-height);
+  align-items: center;
+  padding: 0;
+  font-size: 14px;
   color: inherit;
   font-size: 16px;
   text-decoration: none;
@@ -75,7 +79,7 @@
 .active::after {
   position: absolute;
   right: 0;
-  bottom: 17px;
+  bottom: 14px;
   left: 0;
   height: 1px;
   background: currentColor;
@@ -84,9 +88,9 @@
 
 .content {
   display: grid;
-  width: min(var(--mega-menu-width), 100%);
+  width: 100%;
   height: var(--mega-menu-height);
-  grid-template-columns: minmax(320px, 35%) minmax(0, 1fr);
+  grid-template-columns: 320px minmax(0, 1fr);
   background: var(--color-background);
 }
 
@@ -95,14 +99,14 @@
   min-width: 0;
   flex-direction: column;
   justify-content: space-between;
-  padding: 42px 9% 30px 14%;
+  padding: 40px 40px 26px 78px;
   background: var(--color-background);
   color: var(--color-ink);
 }
 
 .eyebrow {
   margin: 0;
-  font-size: 13px;
+  font-size: 12px;
   letter-spacing: 0.04em;
 }
 
@@ -110,12 +114,12 @@
   max-width: 300px;
   margin: 10px 0 0;
   color: var(--color-muted);
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.5;
 }
 
 .sidebarHeading {
-  margin: 44px 0 0;
+  margin: 48px 0 0;
   font-size: 26px;
   font-weight: 400;
 }
@@ -123,13 +127,13 @@
 .sidebarLinks {
   display: grid;
   gap: 18px;
-  margin-top: 24px;
+  margin-top: 22px;
 }
 
 .sidebarLink,
 .currentSidebarLink {
   color: #b7b7b7;
-  font-size: 25px;
+  font-size: 23px;
   line-height: 1.25;
   text-decoration: none;
   transition: color 160ms ease;
@@ -146,7 +150,7 @@
   align-items: center;
   gap: 12px;
   border-top: 1px solid var(--color-border);
-  padding-top: 28px;
+  padding-top: 24px;
   color: var(--color-ink);
   font-size: 16px;
   text-decoration: none;
@@ -175,7 +179,7 @@
   place-items: center;
   overflow: hidden;
   color: #fff;
-  font-size: clamp(16px, 1.35vw, 24px);
+  font-size: clamp(14px, 1.1vw, 20px);
   text-align: center;
   text-decoration: none;
 }

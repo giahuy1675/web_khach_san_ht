@@ -23,40 +23,39 @@ export const siteConfig = {
   megaMenu: {
     tabs: [
       { label: "Khách sạn", href: "#luu-tru", active: true },
-      { label: "Ẩm thực", href: "#am-thuc", active: false },
-      { label: "Trải nghiệm", href: "#hoat-dong", active: false },
-      { label: "Ưu đãi", href: "#uu-dai", active: false },
+      { label: "Các chương hiệu", href: "#uu-dai", active: false },
+      { label: "Khơi nguồn cảm hứng", href: "#hoat-dong", active: false },
+      { label: "MeliáRewards", href: "#dang-nhap", active: false },
     ],
     sidebar: {
       eyebrow: "KHÁCH SẠN",
-      description: "Trải nghiệm kỳ nghỉ đáng nhớ tại Hà Tiên.",
-      heading: "Khám phá River Hotel",
+      description: "Trải nghiệm du lịch thực sự khó quên",
+      heading: "Các điểm đến",
       links: [
-        { label: "Nơi lưu trú", href: "#luu-tru" },
-        { label: "Ẩm thực", href: "#am-thuc" },
-        { label: "Dịch vụ", href: "#dich-vu" },
+        { label: "Để xuất của chúng tôi", href: "#uu-dai" },
+        { label: "Các loại khách sạn", href: "#luu-tru" },
       ],
       contactLabel: "Liên hệ khách sạn",
       contactHref: "#lien-he",
     },
     cards: [
       {
-        label: "Hà Tiên",
+        label: "Châu Á và Châu Đại Dương",
         href: "#hoat-dong",
         image: "/images/mega-menu/ha-tien.jpg",
       },
       {
-        label: "Nơi lưu trú",
+        label: "Châu Âu",
         href: "#luu-tru",
         image: "/images/mega-menu/stay.jpg",
       },
       {
-        label: "Ẩm thực",
+        label: "Châu Phi và Trung Đông",
         href: "#am-thuc",
         image: "/images/mega-menu/dining.jpg",
       },
       {
-        label: "Khám phá",
+        label: "Châu Mỹ",
         href: "#hoat-dong",
         image: "/images/mega-menu/explore.jpg",
       },
