@@ -1,0 +1,13 @@
+.dots {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border: 1px solid #8a8279;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #8a8279 var(--fill), transparent var(--fill));
+}

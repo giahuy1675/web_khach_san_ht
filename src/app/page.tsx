@@ -1,5 +1,6 @@
 import { BookingSearchBar } from "@/features/booking-search";
 import { HomeIntro } from "@/features/home";
+import { HotelContactInfo, HotelOverview } from "@/features/hotel-overview";
 import { RoomList } from "@/features/rooms";
 import HotelExperience from "@/features/home/components/HotelExperience";
 
@@ -8,6 +9,8 @@ export default function Home() {
     <>
       <HomeIntro />
       <BookingSearchBar />
+      <HotelOverview />
+      <HotelContactInfo />
       <RoomList />
       <HotelExperience />
     </>

@@ -6,7 +6,15 @@ import { homeContent } from "@/config/home";
 import type { Room } from "../types";
 import styles from "./RoomList.module.css";
 
-export default function RoomCard({ room }: { room: Room }) {
+type RoomCardProps = {
+  room: Room;
+  canPrev: boolean;
+  canNext: boolean;
+  onPrev: () => void;
+  onNext: () => void;
+};
+
+export default function RoomCard({ room, canPrev, canNext, onPrev, onNext }: RoomCardProps) {
   const { gallery, ctaLabel, ctaHref } = homeContent.rooms;
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -24,6 +32,28 @@ export default function RoomCard({ room }: { room: Room }) {
             sizes="(max-width: 900px) 85vw, 568px"
           />
         ))}
+        <button
+          className={`${styles.arrow} ${styles.arrowPrev}`}
+          type="button"
+          aria-label="Phòng trước"
+          disabled={!canPrev}
+          onClick={onPrev}
+        >
+          <svg viewBox="0 0 16 16" aria-hidden="true">
+            <path d="m10 3-5 5 5 5" />
+          </svg>
+        </button>
+        <button
+          className={`${styles.arrow} ${styles.arrowNext}`}
+          type="button"
+          aria-label="Phòng tiếp theo"
+          disabled={!canNext}
+          onClick={onNext}
+        >
+          <svg viewBox="0 0 16 16" aria-hidden="true">
+            <path d="m6 3 5 5-5 5" />
+          </svg>
+        </button>
         <div className={styles.dots}>
           {gallery.map((src, index) => (
             <button
