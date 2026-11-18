@@ -3,46 +3,34 @@
 import { useEffect, useRef, useState } from "react";
 
 const PIN_OFFSET = 24;
-const DIRECTION_THRESHOLD = 6;
 
 export default function useAnimatedBookingPin() {
   const [isPinned, setIsPinned] = useState(false);
-  const [isHidden, setIsHidden] = useState(false);
   const [slotHeight, setSlotHeight] = useState<number | null>(null);
   const slotRef = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
-    let lastScrollY = window.scrollY;
     let pinned = false;
     let frame = 0;
 
     const update = () => {
       frame = 0;
-      const currentScrollY = window.scrollY;
+      const shouldPin = window.scrollY > PIN_OFFSET;
 
-      if (currentScrollY <= PIN_OFFSET) {
-        pinned = false;
-        lastScrollY = currentScrollY;
-        setIsPinned(false);
-        setIsHidden(false);
-        setSlotHeight(null);
+      if (shouldPin === pinned) {
         return;
       }
+      pinned = shouldPin;
 
-      const delta = currentScrollY - lastScrollY;
-      if (Math.abs(delta) < DIRECTION_THRESHOLD) {
-        return;
-      }
-      lastScrollY = currentScrollY;
-
-      if (!pinned) {
-        pinned = true;
+      if (shouldPin) {
+        // Đo chiều cao khi form còn nằm trong dòng chảy để giữ chỗ khi nó bị ghim.
         const height = formRef.current?.getBoundingClientRect().height;
         setSlotHeight(height ?? null);
-        setIsPinned(true);
+      } else {
+        setSlotHeight(null);
       }
-      setIsHidden(delta < 0);
+      setIsPinned(shouldPin);
     };
 
     const handleScroll = () => {
@@ -60,5 +48,5 @@ export default function useAnimatedBookingPin() {
     };
   }, []);
 
-  return { isPinned, isHidden, slotHeight, slotRef, formRef };
+  return { isPinned, slotHeight, slotRef, formRef };
 }

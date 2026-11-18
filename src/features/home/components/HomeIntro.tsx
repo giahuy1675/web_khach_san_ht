@@ -25,7 +25,9 @@ export default function HomeIntro() {
             <span key={index} aria-hidden="true">✦</span>
           ))}
         </div>
-        <HeroFeaturedRoom />
+        <div className={styles.featuredSlot}>
+          <HeroFeaturedRoom />
+        </div>
       </div>
 
       <figure className={styles.visual} aria-hidden="true">

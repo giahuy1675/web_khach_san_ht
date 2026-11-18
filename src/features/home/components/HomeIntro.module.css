@@ -1,8 +1,10 @@
 .intro {
+  --hero-height: calc(100svh - var(--spacing-header));
+
   position: relative;
   isolation: isolate;
   display: grid;
-  min-height: calc(100svh - var(--spacing-header));
+  min-height: var(--hero-height);
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   overflow-x: clip;
   overflow-y: visible;
@@ -61,7 +63,7 @@
   top: 0;
   left: calc(50vw - 3px);
   width: calc(50vw + 2px);
-  height: calc(100svh - var(--spacing-header));
+  height: var(--hero-height);
   margin: 0;
   overflow: hidden;
   transform: translateY(-2px);
@@ -72,9 +74,22 @@
   object-position: center 55%;
 }
 
+.featuredSlot {
+  margin-top: 72px;
+}
+
 @media (min-width: 1101px) {
-  .content {
-    padding-bottom: 200px;
+  .intro {
+    height: var(--hero-height);
+    min-height: 0;
+  }
+
+  /* Thẻ phòng nằm ngay dưới thanh tìm kiếm (thanh đè lên đáy hero). */
+  .featuredSlot {
+    position: absolute;
+    top: calc(var(--hero-height) - 41px);
+    left: clamp(24px, 11.5vw, 194px);
+    margin-top: 0;
   }
 }
 

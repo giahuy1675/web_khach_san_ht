@@ -1,17 +1,19 @@
 "use client";
 
 import { useRef } from "react";
+import Link from "next/link";
 import { homeContent } from "@/config/home";
+import { roomsPageContent } from "@/config/roomsPage";
 import { siteConfig } from "@/config/site";
 import { useRooms } from "../hooks/useRooms";
-import useCarousel from "../hooks/useCarousel";
+import useCarousel from "@/shared/hooks/useCarousel";
 import RoomCard from "./RoomCard";
 import styles from "./RoomList.module.css";
 
 export default function RoomList() {
   const { rooms, isLoading, error } = useRooms();
   const trackRef = useRef<HTMLUListElement>(null);
-  const { isDragging, canPrev, canNext, prev, next } = useCarousel(trackRef, rooms.length);
+  const { isDragging } = useCarousel(trackRef, rooms.length);
   return (
     <section
       id={siteConfig.sections.rooms}
@@ -20,12 +22,12 @@ export default function RoomList() {
     >
       <div className={styles.heading}>
         <h2 id="rooms-title">{homeContent.rooms.title}</h2>
-        <a href="#luu-tru">
+        <Link href={roomsPageContent.href}>
           {homeContent.rooms.viewAllLabel}
           <svg viewBox="0 0 16 16" aria-hidden="true">
             <path d="m6 3 5 5-5 5" />
           </svg>
-        </a>
+        </Link>
       </div>
 
       {isLoading ? (
@@ -45,14 +47,7 @@ export default function RoomList() {
             ref={trackRef}
           >
             {rooms.map((room) => (
-              <RoomCard
-                key={room.id}
-                room={room}
-                canPrev={canPrev}
-                canNext={canNext}
-                onPrev={prev}
-                onNext={next}
-              />
+              <RoomCard key={room.id} room={room} />
             ))}
           </ul>
         </div>

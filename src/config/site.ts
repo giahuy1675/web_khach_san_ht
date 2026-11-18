@@ -18,7 +18,7 @@ export const siteConfig = {
     { label: "Ẩm thực", href: "#am-thuc" },
     { label: "Thư viện ảnh", href: "#thu-vien-anh" },
     { label: "Dịch vụ", href: "#dich-vu" },
-    { label: "Các hoạt động", href: "#hoat-dong" },
+    { label: "Sự kiện", href: "#su-kien" },
   ],
   megaMenu: {
     tabs: [
@@ -41,7 +41,7 @@ export const siteConfig = {
     cards: [
       {
         label: "Châu Á và Châu Đại Dương",
-        href: "#hoat-dong",
+        href: "#gioi-thieu",
         image: "/images/mega-menu/ha-tien.jpg",
       },
       {
@@ -56,7 +56,7 @@ export const siteConfig = {
       },
       {
         label: "Châu Mỹ",
-        href: "#hoat-dong",
+        href: "#gioi-thieu",
         image: "/images/mega-menu/explore.jpg",
       },
     ],

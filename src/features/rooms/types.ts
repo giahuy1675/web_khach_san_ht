@@ -3,6 +3,7 @@ export type RoomDto = {
   name: string;
   description: string;
   maxOccupancy: number;
+  // Thứ tự cố định: [tầm nhìn, loại giường, diện tích]
   highlights: string[];
 };
 

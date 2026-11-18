@@ -5,6 +5,14 @@ import { useCallback, useEffect, useRef, useState, type RefObject } from "react"
 const DRAG_THRESHOLD = 5;
 const OVERSCROLL_RESISTANCE = 0.35;
 const MOMENTUM_MS = 180;
+const FREE_MOMENTUM_MS = 450;
+const FREE_TRANSITION = "transform 1000ms cubic-bezier(0.16, 1, 0.3, 1)";
+const STALE_VELOCITY_MS = 80;
+
+type CarouselOptions = {
+  // true: thả tay thì khớp vào từng thẻ; false: trượt tự do theo đà rồi giảm tốc.
+  snap?: boolean;
+};
 
 type Metrics = {
   step: number;
@@ -30,9 +38,12 @@ function measure(track: HTMLElement): Metrics | null {
   return { step, maxScroll, maxIndex: step > 0 ? Math.ceil(maxScroll / step) : 0 };
 }
 
-export default function useCarousel(trackRef: RefObject<HTMLElement | null>, itemCount: number) {
-  const [index, setIndex] = useState(0);
-  const [maxIndex, setMaxIndex] = useState(0);
+export default function useCarousel(
+  trackRef: RefObject<HTMLElement | null>,
+  itemCount: number,
+  options: CarouselOptions = {},
+) {
+  const snap = options.snap ?? true;
   const [isDragging, setIsDragging] = useState(false);
   const indexRef = useRef(0);
 
@@ -57,8 +68,6 @@ export default function useCarousel(trackRef: RefObject<HTMLElement | null>, ite
       }
       const clamped = Math.min(Math.max(nextIndex, 0), metrics.maxIndex);
       indexRef.current = clamped;
-      setIndex(clamped);
-      setMaxIndex(metrics.maxIndex);
       render(-Math.min(clamped * metrics.step, metrics.maxScroll), true);
     },
     [render, trackRef],
@@ -84,7 +93,15 @@ export default function useCarousel(trackRef: RefObject<HTMLElement | null>, ite
       return matrix.m41;
     };
 
-    const handleResize = () => goTo(indexRef.current);
+    // Trượt tự do tới vị trí mới (đã kẹp trong giới hạn) bằng easing giảm tốc dài.
+    const glideTo = (offset: number) => {
+      const bounds = measure(track);
+      const clamped = Math.min(Math.max(offset, -(bounds?.maxScroll ?? 0)), 0);
+      track.style.transition = FREE_TRANSITION;
+      track.style.transform = `translate3d(${clamped}px, 0, 0)`;
+    };
+
+    const handleResize = () => (snap ? goTo(indexRef.current) : glideTo(currentOffset()));
 
     const handleDown = (event: PointerEvent) => {
       if (event.pointerType === "mouse" && event.button !== 0) {
@@ -98,6 +115,8 @@ export default function useCarousel(trackRef: RefObject<HTMLElement | null>, ite
       lastTime = performance.now();
       velocity = 0;
       startOffset = currentOffset();
+      // Dừng animation đang chạy để bắt được băng chuyền ngay giữa lúc đang trượt.
+      render(startOffset, false);
     };
 
     const handleMove = (event: PointerEvent) => {
@@ -138,7 +157,21 @@ export default function useCarousel(trackRef: RefObject<HTMLElement | null>, ite
       isDown = false;
       setIsDragging(false);
 
-      if (!moved || !metrics || metrics.step === 0) {
+      if (!metrics || metrics.step === 0) {
+        return;
+      }
+
+      if (performance.now() - lastTime > STALE_VELOCITY_MS) {
+        velocity = 0;
+      }
+
+      if (!snap) {
+        glideTo(currentOffset() + (moved ? velocity * FREE_MOMENTUM_MS : 0));
+        return;
+      }
+
+      if (!moved) {
+        goTo(indexRef.current);
         return;
       }
 
@@ -155,7 +188,6 @@ export default function useCarousel(trackRef: RefObject<HTMLElement | null>, ite
       }
     };
 
-    setMaxIndex(metrics?.maxIndex ?? 0);
     track.addEventListener("pointerdown", handleDown);
     track.addEventListener("click", handleClick, true);
     window.addEventListener("pointermove", handleMove);
@@ -171,13 +203,7 @@ export default function useCarousel(trackRef: RefObject<HTMLElement | null>, ite
       window.removeEventListener("pointercancel", handleUp);
       window.removeEventListener("resize", handleResize);
     };
-  }, [goTo, itemCount, render, trackRef]);
+  }, [goTo, itemCount, render, snap, trackRef]);
 
-  return {
-    isDragging,
-    canPrev: index > 0,
-    canNext: index < maxIndex,
-    prev: () => goTo(indexRef.current - 1),
-    next: () => goTo(indexRef.current + 1),
-  };
+  return { isDragging };
 }

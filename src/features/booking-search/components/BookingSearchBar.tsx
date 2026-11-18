@@ -34,7 +34,7 @@ export default function BookingSearchBar() {
     petsIncluded: false,
   });
   const [discountCategory, setDiscountCategory] = useState<DiscountCategory>(null);
-  const { isPinned, isHidden, slotHeight, slotRef, formRef } = useAnimatedBookingPin();
+  const { isPinned, slotHeight, slotRef, formRef } = useAnimatedBookingPin();
 
   const closePopover = useCallback(() => {
     setActivePopover(null);
@@ -110,7 +110,6 @@ export default function BookingSearchBar() {
           className={[
             styles.searchForm,
             isPinned ? styles.pinned : "",
-            isPinned && isHidden ? styles.formHidden : "",
             activePopover ? styles.popoverOpen : "",
           ]
             .filter(Boolean)

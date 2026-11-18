@@ -50,8 +50,8 @@ export const megaMenuPanels = {
         subheading: "Khám phá thiên nhiên và văn hóa vùng đất biên giới",
         text: "Leo núi Đá Dựng, dạo quanh thành phố ven sông hay thư giãn bên hồ bơi: lịch trình linh hoạt cho mọi kỳ nghỉ.",
         cards: [
-          { title: "Núi Đá Dựng", subtitle: "Hà Tiên", image: images.explore, href: "#hoat-dong" },
-          { title: "Thành phố ven sông", subtitle: "Hà Tiên", image: images.haTien, href: "#hoat-dong" },
+          { title: "Núi Đá Dựng", subtitle: "Hà Tiên", image: images.explore, href: "#gioi-thieu" },
+          { title: "Thành phố ven sông", subtitle: "Hà Tiên", image: images.haTien, href: "#gioi-thieu" },
           { title: "Hồ bơi River", subtitle: "Hà Tiên", image: images.stay, href: "#dich-vu" },
         ],
       },
@@ -62,7 +62,7 @@ export const megaMenuPanels = {
         subheading: "Cẩm nang và cảm hứng cho chuyến đi của bạn",
         text: "Mẹo du lịch, lịch trình gợi ý và những câu chuyện về con người, món ăn và cảnh sắc Hà Tiên.",
         cards: [
-          { title: "Lịch trình 3 ngày", subtitle: "Cẩm nang", image: images.explore, href: "#hoat-dong" },
+          { title: "Lịch trình 3 ngày", subtitle: "Cẩm nang", image: images.explore, href: "#gioi-thieu" },
           { title: "Món ngon phải thử", subtitle: "Ẩm thực", image: images.dining, href: "#am-thuc" },
           { title: "Nghỉ dưỡng cuối tuần", subtitle: "Gợi ý", image: images.stay, href: "#luu-tru" },
         ],
@@ -96,7 +96,7 @@ export const megaMenuPanels = {
         heading: "Trải nghiệm riêng",
         subheading: "Đặc quyền cho các hoạt động quanh Hà Tiên",
         text: "Dùng điểm để đổi các hoạt động và dịch vụ đón tiễn trong suốt hành trình của bạn.",
-        href: "#hoat-dong",
+        href: "#gioi-thieu",
       },
     ],
   },

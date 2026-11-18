@@ -1,22 +1,22 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import { homeContent } from "@/config/home";
+import { roomsPageContent } from "@/config/roomsPage";
 import type { Room } from "../types";
 import styles from "./RoomList.module.css";
 
 type RoomCardProps = {
   room: Room;
-  canPrev: boolean;
-  canNext: boolean;
-  onPrev: () => void;
-  onNext: () => void;
 };
 
-export default function RoomCard({ room, canPrev, canNext, onPrev, onNext }: RoomCardProps) {
-  const { gallery, ctaLabel, ctaHref } = homeContent.rooms;
+export default function RoomCard({ room }: RoomCardProps) {
+  const { gallery, ctaLabel } = homeContent.rooms;
   const [activeIndex, setActiveIndex] = useState(0);
+  const goTo = (step: number) =>
+    setActiveIndex((current) => (current + step + gallery.length) % gallery.length);
 
   return (
     <li className={styles.card}>
@@ -35,9 +35,8 @@ export default function RoomCard({ room, canPrev, canNext, onPrev, onNext }: Roo
         <button
           className={`${styles.arrow} ${styles.arrowPrev}`}
           type="button"
-          aria-label="Phòng trước"
-          disabled={!canPrev}
-          onClick={onPrev}
+          aria-label={`${room.name}: ảnh trước`}
+          onClick={() => goTo(-1)}
         >
           <svg viewBox="0 0 16 16" aria-hidden="true">
             <path d="m10 3-5 5 5 5" />
@@ -46,9 +45,8 @@ export default function RoomCard({ room, canPrev, canNext, onPrev, onNext }: Roo
         <button
           className={`${styles.arrow} ${styles.arrowNext}`}
           type="button"
-          aria-label="Phòng tiếp theo"
-          disabled={!canNext}
-          onClick={onNext}
+          aria-label={`${room.name}: ảnh tiếp theo`}
+          onClick={() => goTo(1)}
         >
           <svg viewBox="0 0 16 16" aria-hidden="true">
             <path d="m6 3 5 5-5 5" />
@@ -75,9 +73,9 @@ export default function RoomCard({ room, canPrev, canNext, onPrev, onNext }: Roo
           ))}
         </ul>
         <p>{room.description}</p>
-        <a className={styles.cta} href={ctaHref}>
+        <Link className={styles.cta} href={`${roomsPageContent.href}/${room.id}`}>
           {ctaLabel}
-        </a>
+        </Link>
       </div>
     </li>
   );
