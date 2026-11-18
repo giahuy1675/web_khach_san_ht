@@ -32,7 +32,7 @@ export default function MainMenu() {
           aria-label={siteConfig.menuLabel}
           aria-expanded={isOpen}
           aria-controls={isOpen ? "river-hotel-mega-menu" : undefined}
-          onClick={() => setIsOpen(true)}
+          onClick={() => setIsOpen((isOpen) => !isOpen)}
         >
           <span />
           <span />

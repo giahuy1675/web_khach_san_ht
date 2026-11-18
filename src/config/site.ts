@@ -75,4 +75,9 @@ export const siteConfig = {
     href: "#dang-nhap",
   },
   footerText: "© River Hotel Hà Tiên",
+  footer: {
+    address: "Hà Tiên, Kiên Giang, Việt Nam",
+    phone: "+84 297 000 0000",
+    email: "hello@riverhotel.vn",
+  },
 } as const;

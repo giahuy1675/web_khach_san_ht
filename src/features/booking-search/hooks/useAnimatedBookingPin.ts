@@ -4,83 +4,82 @@ import { useEffect, useRef, useState } from "react";
 
 export default function useAnimatedBookingPin() {
   const [isPinned, setIsPinned] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [travelY, setTravelY] = useState(0);
+  const [tabsTravelY, setTabsTravelY] = useState(0);
   const [slotHeight, setSlotHeight] = useState<number | null>(null);
+  const [tabsHeight, setTabsHeight] = useState<number | null>(null);
   const slotRef = useRef<HTMLDivElement>(null);
+  const tabsSlotRef = useRef<HTMLDivElement>(null);
+  const tabsRef = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const isPinnedRef = useRef(false);
   const targetPinnedRef = useRef(false);
-  const animationTimerRef = useRef<number | null>(null);
-  const returnTimerRef = useRef<number | null>(null);
+  const lastScrollYRef = useRef(0);
+  const pinnedAnimationRef = useRef<Animation | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      const shouldPin = window.scrollY > 24;
+      const currentScrollY = window.scrollY;
+      const isScrollingUp = currentScrollY < lastScrollYRef.current;
+      lastScrollYRef.current = currentScrollY;
+      const shouldPin = currentScrollY > 24;
 
-      if (shouldPin === targetPinnedRef.current) {
+      if (currentScrollY <= 24) {
+        pinnedAnimationRef.current?.cancel();
+        setIsHidden(false);
+        setIsPinned(false);
+        setIsAnimating(false);
+        setTravelY(0);
+        setTabsTravelY(0);
+        setSlotHeight(null);
+        setTabsHeight(null);
+        isPinnedRef.current = false;
+        targetPinnedRef.current = false;
         return;
       }
 
-      targetPinnedRef.current = shouldPin;
-
-      if (returnTimerRef.current !== null) {
-        window.clearTimeout(returnTimerRef.current);
-        returnTimerRef.current = null;
+      if (isScrollingUp) {
+        setIsHidden(true);
+        setIsAnimating(true);
+        setTravelY(-window.innerHeight);
+        setTabsTravelY(-window.innerHeight);
+        targetPinnedRef.current = false;
+        return;
       }
 
-      if (animationTimerRef.current !== null) {
-        window.clearTimeout(animationTimerRef.current);
-        animationTimerRef.current = null;
-      }
-
-      const headerBottom =
-        document.querySelector("header")?.getBoundingClientRect().bottom ?? 0;
-
-      if (shouldPin) {
-        if (isPinnedRef.current) {
-          setIsAnimating(true);
-          setTravelY(0);
-          return;
-        }
-
+      if (shouldPin && !targetPinnedRef.current) {
+        targetPinnedRef.current = true;
+        setIsHidden(false);
         const form = formRef.current;
-        if (!form) {
-          return;
+        const formBounds = form?.getBoundingClientRect();
+        if (formBounds) {
+          setSlotHeight(formBounds.height);
         }
-
-        const formBounds = form.getBoundingClientRect();
-        setSlotHeight(formBounds.height);
-        setTravelY(formBounds.top - headerBottom);
+        setTravelY(0);
         setIsPinned(true);
         setIsAnimating(false);
         isPinnedRef.current = true;
 
-        animationTimerRef.current = window.setTimeout(() => {
-          if (targetPinnedRef.current) {
-            setIsAnimating(true);
-            setTravelY(0);
+        pinnedAnimationRef.current?.cancel();
+        window.setTimeout(() => {
+          const form = formRef.current;
+          if (!form || !targetPinnedRef.current) {
+            return;
           }
-        }, 20);
-        return;
+          pinnedAnimationRef.current = form.animate(
+            [
+              { transform: `translateY(${formBounds?.top ?? 24}px)`, opacity: 0.2 },
+              { transform: "translateY(0)", opacity: 1 },
+            ],
+            {
+              duration: 320,
+              easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+            },
+          );
+        }, 24);
       }
-
-      const slotTop = slotRef.current?.getBoundingClientRect().top;
-      if (slotTop === undefined) {
-        return;
-      }
-
-      setIsAnimating(true);
-      setTravelY(slotTop - headerBottom);
-      returnTimerRef.current = window.setTimeout(() => {
-        if (!targetPinnedRef.current) {
-          setIsPinned(false);
-          setIsAnimating(false);
-          setTravelY(0);
-          setSlotHeight(null);
-          isPinnedRef.current = false;
-        }
-      }, 380);
     };
 
     handleScroll();
@@ -88,22 +87,22 @@ export default function useAnimatedBookingPin() {
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      if (animationTimerRef.current !== null) {
-        window.clearTimeout(animationTimerRef.current);
-      }
-      if (returnTimerRef.current !== null) {
-        window.clearTimeout(returnTimerRef.current);
-      }
+      pinnedAnimationRef.current?.cancel();
       targetPinnedRef.current = false;
     };
   }, []);
 
   return {
     isPinned,
+    isHidden,
     isAnimating,
     travelY,
+    tabsTravelY,
     slotHeight,
+    tabsHeight,
     slotRef,
+    tabsSlotRef,
+    tabsRef,
     formRef,
   };
 }

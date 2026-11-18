@@ -32,7 +32,14 @@ export default function MegaMenu({ onClose }: MegaMenuProps) {
   }, [onClose]);
 
   return (
-    <div className={styles.backdrop}>
+    <div
+      className={styles.backdrop}
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget) {
+          onClose();
+        }
+      }}
+    >
       <section
         id="river-hotel-mega-menu"
         className={styles.dialog}

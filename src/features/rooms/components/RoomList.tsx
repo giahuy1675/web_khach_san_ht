@@ -3,6 +3,8 @@
 import { homeContent } from "@/config/home";
 import { siteConfig } from "@/config/site";
 import { useRooms } from "../hooks/useRooms";
+import Image from "next/image";
+import styles from "./RoomList.module.css";
 
 export default function RoomList() {
   const { rooms, isLoading, error } = useRooms();
@@ -10,12 +12,13 @@ export default function RoomList() {
   return (
     <section
       id={siteConfig.sections.rooms}
-      className="mx-auto min-h-svh w-full max-w-7xl px-content py-section"
+      className={styles.section}
       aria-labelledby="rooms-title"
     >
-      <h2 id="rooms-title" className="text-2xl font-medium text-ink">
-        {homeContent.rooms.title}
-      </h2>
+      <div className={styles.heading}>
+        <h2 id="rooms-title">{homeContent.rooms.title}</h2>
+        <a href="#luu-tru">{homeContent.rooms.viewAllLabel}</a>
+      </div>
 
       {isLoading ? (
         <p className="mt-4 text-muted" aria-live="polite">
@@ -28,12 +31,23 @@ export default function RoomList() {
       ) : rooms.length === 0 ? (
         <p className="mt-4 text-muted">{homeContent.rooms.emptyMessage}</p>
       ) : (
-        <ul className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className={styles.grid}>
           {rooms.map((room) => (
-            <li key={room.id} className="rounded border border-border p-6">
-              <h3 className="text-lg font-medium text-ink">{room.name}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted">{room.description}</p>
-              <p className="mt-4 text-sm text-muted">Tối đa {room.maxGuests} khách</p>
+            <li key={room.id} className={styles.card}>
+              <figure className={styles.image}>
+                <Image
+                  src="/images/mega-menu/stay.jpg"
+                  alt=""
+                  fill
+                  unoptimized
+                  sizes="(max-width: 900px) 100vw, 33vw"
+                />
+              </figure>
+              <div className={styles.cardContent}>
+                <h3>{room.name}</h3>
+                <p>{room.description}</p>
+                <span>Tối đa {room.maxGuests} khách</span>
+              </div>
             </li>
           ))}
         </ul>

@@ -325,4 +325,11 @@
   .cards {
     grid-auto-rows: 175px;
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    .backdrop,
+    .dialog {
+      animation: none;
+    }
+  }
 }

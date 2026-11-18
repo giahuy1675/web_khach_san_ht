@@ -13,7 +13,6 @@ import useAnimatedBookingPin from "../hooks/useAnimatedBookingPin";
 import BookingPopover from "./BookingPopover";
 import BookingSearchFields from "./BookingSearchFields";
 import styles from "./BookingSearchBar.module.css";
-import popoverStyles from "./BookingPopover.module.css";
 
 const popupDimensions: Record<BookingPopoverKind, { width: number; height: number }> = {
   dates: { width: 870, height: 510 },
@@ -35,8 +34,19 @@ export default function BookingSearchBar() {
     petsIncluded: false,
   });
   const [discountCategory, setDiscountCategory] = useState<DiscountCategory>(null);
-  const { isPinned, isAnimating, travelY, slotHeight, slotRef, formRef } =
-    useAnimatedBookingPin();
+  const {
+    isPinned,
+    isHidden,
+    isAnimating,
+    travelY,
+    tabsTravelY,
+    slotHeight,
+    tabsHeight,
+    slotRef,
+    tabsSlotRef,
+    tabsRef,
+    formRef,
+  } = useAnimatedBookingPin();
 
   const closePopover = useCallback(() => {
     setActivePopover(null);
@@ -83,24 +93,41 @@ export default function BookingSearchBar() {
 
   const slotStyle = isPinned && slotHeight !== null ? { height: slotHeight } : undefined;
   const formStyle = isPinned ? { transform: `translateY(${travelY}px)` } : undefined;
+  const tabsSlotStyle = isPinned && tabsHeight !== null ? { height: tabsHeight } : undefined;
+  const tabsStyle = isPinned ? { transform: `translateY(${tabsTravelY}px)` } : undefined;
 
   return (
     <>
-      <div
-        className={`${styles.tabsOuter} ${activePopover ? popoverStyles.tabsOpen : ""}`}
-      >
-        <div className={styles.tabs} aria-label={bookingSearchConfig.tabsLabel}>
-          <span className={styles.activeTab}>{bookingSearchConfig.tabs.hotel}</span>
-          <span className={styles.inactiveTab}>{bookingSearchConfig.tabs.package}</span>
+      <div ref={tabsSlotRef} className={styles.tabsSlot} style={tabsSlotStyle}>
+        <div
+          ref={tabsRef}
+          className={[
+            styles.tabsOuter,
+            isPinned || isHidden ? styles.tabsHidden : "",
+            activePopover ? styles.popoverOpen : "",
+          ]
+            .filter(Boolean)
+            .join(" ")}
+          style={tabsStyle}
+        >
+          <div className={styles.tabs} aria-label={bookingSearchConfig.tabsLabel}>
+            <span className={styles.activeTab}>{bookingSearchConfig.tabs.hotel}</span>
+            <span className={styles.inactiveTab}>{bookingSearchConfig.tabs.package}</span>
+          </div>
         </div>
       </div>
 
-      <div ref={slotRef} className={styles.searchSlot} style={slotStyle}>
+      <div
+        ref={slotRef}
+        className={`${styles.searchSlot} ${activePopover ? styles.popoverOpen : ""}`}
+        style={slotStyle}
+      >
         <form
           ref={formRef}
           className={[
             styles.searchForm,
             isPinned ? styles.pinned : "",
+            isHidden ? styles.formHidden : "",
             isAnimating ? styles.animated : "",
             activePopover ? styles.popoverOpen : "",
           ]

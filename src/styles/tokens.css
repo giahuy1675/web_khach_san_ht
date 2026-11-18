@@ -8,6 +8,6 @@
   --font-brand: Georgia, "Times New Roman", serif;
   --spacing-content: 1.5rem;
   --spacing-section: 4rem;
-  --spacing-header: 4.5rem;
-  --spacing-header-mobile: 4.25rem;
+  --spacing-header: 60px;
+  --spacing-header-mobile: 68px;
 }

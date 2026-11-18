@@ -1,6 +1,23 @@
+.tabsSlot {
+  min-height: 42px;
+}
+
 .tabsOuter {
+  position: relative;
+  z-index: 1;
   width: min(1398px, calc(100vw - 32px));
   margin: 0 0 0 max(16px, calc((100vw - 1398px) / 2));
+}
+
+.tabsHidden,
+.formHidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.tabsHidden {
+  display: none;
 }
 
 .tabs {
@@ -34,6 +51,7 @@
 
 .searchSlot {
   position: relative;
+  z-index: 1;
 }
 
 .searchForm {
@@ -51,7 +69,7 @@
 .pinned {
   position: fixed;
   z-index: 4;
-  top: calc(var(--spacing-header) + 1px);
+  top: var(--spacing-header);
   left: 0;
   width: 100%;
   max-width: none;
@@ -62,6 +80,7 @@
   border-left: 0;
   background: #f7f7f7;
   box-shadow: 0 4px 12px rgb(0 0 0 / 8%);
+  will-change: transform, opacity;
 }
 
 .popoverOpen {
@@ -69,7 +88,7 @@
 }
 
 .animated {
-  transition: transform 380ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .field {
@@ -248,12 +267,24 @@
   }
 
   .pinned {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    min-height: 56px;
+    grid-template-columns: 1.4fr 1fr 0.8fr 0.8fr 56px;
   }
 
   .pinned .searchButton {
-    min-height: 50px;
-    margin: 8px;
+    min-height: 56px;
+    margin: 0;
+  }
+
+  .pinned .field {
+    min-height: 56px;
+    border-bottom: 0;
+  }
+}
+
+@media (max-width: 820px) {
+  .pinned {
+    top: var(--spacing-header-mobile);
   }
 }
 
@@ -267,6 +298,10 @@
     min-height: 44px;
   }
 
+  .tabsSlot {
+    min-height: 44px;
+  }
+
   .activeTab,
   .inactiveTab {
     min-width: 0;
@@ -275,7 +310,7 @@
   }
 
   .pinned {
-    top: calc(var(--spacing-header-mobile) + 1px);
+    top: var(--spacing-header-mobile);
     width: 100%;
   }
 
@@ -307,7 +342,12 @@
   }
 
   .pinned {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr 56px;
+  }
+
+  .pinned .destinationField,
+  .pinned .discountField {
+    display: none;
   }
 
   .field {
@@ -318,5 +358,9 @@
 @media (prefers-reduced-motion: reduce) {
   .animated {
     transition: none;
+  }
+
+  .pinned {
+    animation: none;
   }
 }

@@ -22,7 +22,7 @@ export default function SiteHeader() {
           <span className={styles.logoCaption}>{siteConfig.brandCaption}</span>
         </Link>
 
-        <nav className={styles.primaryNav} aria-label={siteConfig.primaryNavigationLabel}>
+        <nav className={styles.sectionNav} aria-label={siteConfig.quickNavigationLabel}>
           <NavigationLinks />
         </nav>
 
