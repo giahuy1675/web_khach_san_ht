@@ -3,6 +3,13 @@ export const homeContent = {
     eyebrow: "HÀ TIÊN, VIỆT NAM",
     title: "River\nHotel\nHà Tiên",
     image: "/images/mega-menu/stay.jpg",
+    featured: {
+      title: "Phòng cao cấp",
+      description: "Kỳ nghỉ thoải mái nhất bên dòng sông Hà Tiên với tầm nhìn ra sông.",
+      image: "/images/mega-menu/stay.jpg",
+      href: "#luu-tru",
+      linkLabel: "Xem Phòng cao cấp",
+    },
   },
   rooms: {
     title: "Nơi lưu trú",

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { homeContent } from "@/config/home";
+import HeroFeaturedRoom from "./HeroFeaturedRoom";
 import styles from "./HomeIntro.module.css";
 
 export default function HomeIntro() {
@@ -24,6 +25,7 @@ export default function HomeIntro() {
             <span key={index} aria-hidden="true">✦</span>
           ))}
         </div>
+        <HeroFeaturedRoom />
       </div>
 
       <figure className={styles.visual} aria-hidden="true">
@@ -32,7 +34,7 @@ export default function HomeIntro() {
           alt=""
           fill
           priority
-          unoptimized
+          quality={100}
           sizes="(max-width: 900px) 100vw, 50vw"
           className={styles.photo}
         />

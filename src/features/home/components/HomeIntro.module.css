@@ -2,7 +2,7 @@
   position: relative;
   isolation: isolate;
   display: grid;
-  min-height: clamp(420px, 70svh, 540px);
+  min-height: calc(100svh - var(--spacing-header));
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   overflow-x: clip;
   overflow-y: visible;
@@ -61,7 +61,7 @@
   top: 0;
   left: calc(50vw - 3px);
   width: calc(50vw + 2px);
-  height: min(670px, 87.5svh);
+  height: calc(100svh - var(--spacing-header));
   margin: 0;
   overflow: hidden;
   transform: translateY(-2px);
@@ -70,6 +70,12 @@
 .photo {
   object-fit: cover;
   object-position: center 55%;
+}
+
+@media (min-width: 1101px) {
+  .content {
+    padding-bottom: 200px;
+  }
 }
 
 @media (max-width: 900px) {

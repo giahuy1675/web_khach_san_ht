@@ -2,6 +2,16 @@
   min-height: 42px;
 }
 
+@media (min-width: 1101px) {
+  .tabsSlot {
+    margin-top: -176px;
+  }
+
+  .searchSlot {
+    margin-bottom: 49px;
+  }
+}
+
 .tabsOuter {
   position: relative;
   z-index: 1;
