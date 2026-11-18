@@ -3,7 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { megaMenuPanels } from "@/config/megaMenu";
 import { siteConfig } from "@/config/site";
+import { BrandsPanel, InspirationPanel, RewardsPanel } from "./MegaMenuPanels";
 import styles from "./MegaMenu.module.css";
 
 type MegaMenuProps = {
@@ -12,13 +14,22 @@ type MegaMenuProps = {
 
 export default function MegaMenu({ onClose }: MegaMenuProps) {
   const closeButtonRef = useRef<HTMLButtonElement>(null);
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [activeTab, setActiveTab] = useState<string>(siteConfig.megaMenu.tabs[0].id);
+  const [openId, setOpenId] = useState<string | null>(siteConfig.megaMenu.tabs[0].id);
   const { tabs, sidebar } = siteConfig.megaMenu;
-  const subLinks = [
-    { label: sidebar.heading, href: sidebar.links[0].href },
-    ...sidebar.links,
-    { label: sidebar.contactLabel, href: sidebar.contactHref },
-  ];
+  const mobileLinks: Record<string, { label: string; href: string }[]> = {
+    hotels: [
+      { label: sidebar.heading, href: sidebar.links[0].href },
+      ...sidebar.links,
+      { label: sidebar.contactLabel, href: sidebar.contactHref },
+    ],
+    brands: megaMenuPanels.brands.items.map((item) => ({ label: item.name, href: item.href })),
+    inspiration: megaMenuPanels.inspiration.sections.map((section) => ({
+      label: section.label,
+      href: section.cards[0].href,
+    })),
+    rewards: [megaMenuPanels.rewards.login, megaMenuPanels.rewards.register],
+  };
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow;
@@ -72,20 +83,25 @@ export default function MegaMenu({ onClose }: MegaMenuProps) {
           </Link>
 
           <nav className={styles.topNavigation} aria-label={siteConfig.quickNavigationLabel}>
-            {siteConfig.megaMenu.tabs.map((tab) => (
-              <a
-                key={tab.label}
-                className={`${styles.topNavigationLink} ${tab.active ? styles.active : ""}`}
-                href={tab.href}
-                aria-current={tab.active ? "page" : undefined}
-                onClick={onClose}
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                className={`${styles.topNavigationLink} ${tab.id === activeTab ? styles.active : ""}`}
+                type="button"
+                aria-pressed={tab.id === activeTab}
+                onClick={() => setActiveTab(tab.id)}
               >
                 {tab.label}
-              </a>
+              </button>
             ))}
           </nav>
         </header>
 
+        <div className={styles.desktopPanels} key={activeTab}>
+          {activeTab === "brands" && <BrandsPanel onClose={onClose} />}
+          {activeTab === "inspiration" && <InspirationPanel onClose={onClose} />}
+          {activeTab === "rewards" && <RewardsPanel onClose={onClose} />}
+          {activeTab === "hotels" && (
         <div className={styles.content}>
           <aside className={styles.sidebar}>
             <div>
@@ -93,10 +109,10 @@ export default function MegaMenu({ onClose }: MegaMenuProps) {
               <p className={styles.description}>{siteConfig.megaMenu.sidebar.description}</p>
               <h2 className={styles.sidebarHeading}>{siteConfig.megaMenu.sidebar.heading}</h2>
               <nav className={styles.sidebarLinks} aria-label={siteConfig.primaryNavigationLabel}>
-                {siteConfig.megaMenu.sidebar.links.map((item, index) => (
+                {siteConfig.megaMenu.sidebar.links.map((item) => (
                   <a
                     key={item.href}
-                    className={index === 0 ? styles.currentSidebarLink : styles.sidebarLink}
+                    className={styles.sidebarLink}
                     href={item.href}
                     onClick={onClose}
                   >
@@ -141,46 +157,39 @@ export default function MegaMenu({ onClose }: MegaMenuProps) {
             ))}
           </nav>
         </div>
+          )}
+        </div>
 
         <nav className={styles.accordion} aria-label={siteConfig.primaryNavigationLabel}>
-          {tabs.map((tab, index) => {
-            const expandable = index === 0;
-            const expanded = expandable && openIndex === index;
+          {tabs.map((tab) => {
+            const expanded = openId === tab.id;
 
             return (
-              <div key={tab.label} className={styles.accordionItem}>
-                {expandable ? (
-                  <button
-                    className={styles.accordionTrigger}
-                    type="button"
-                    aria-expanded={expanded}
-                    onClick={() => setOpenIndex(expanded ? null : index)}
+              <div key={tab.id} className={styles.accordionItem}>
+                <button
+                  className={styles.accordionTrigger}
+                  type="button"
+                  aria-expanded={expanded}
+                  onClick={() => setOpenId(expanded ? null : tab.id)}
+                >
+                  {tab.label}
+                  <svg
+                    className={`${styles.chevron} ${expanded ? styles.chevronOpen : ""}`}
+                    viewBox="0 0 16 16"
+                    aria-hidden="true"
                   >
-                    {tab.label}
-                    <svg
-                      className={`${styles.chevron} ${expanded ? styles.chevronOpen : ""}`}
-                      viewBox="0 0 16 16"
-                      aria-hidden="true"
-                    >
-                      <path d="m3 10 5-5 5 5" />
-                    </svg>
-                  </button>
-                ) : (
-                  <a className={styles.accordionTrigger} href={tab.href} onClick={onClose}>
-                    {tab.label}
-                  </a>
-                )}
-                {expandable && (
-                  <div className={`${styles.accordionPanel} ${expanded ? styles.panelOpen : ""}`}>
-                    <div className={styles.accordionPanelInner}>
-                      {subLinks.map((item) => (
-                        <a key={item.label} href={item.href} onClick={onClose}>
-                          {item.label}
-                        </a>
-                      ))}
-                    </div>
+                    <path d="m3 10 5-5 5 5" />
+                  </svg>
+                </button>
+                <div className={`${styles.accordionPanel} ${expanded ? styles.panelOpen : ""}`}>
+                  <div className={styles.accordionPanelInner}>
+                    {mobileLinks[tab.id].map((item) => (
+                      <a key={item.label} href={item.href} onClick={onClose}>
+                        {item.label}
+                      </a>
+                    ))}
                   </div>
-                )}
+                </div>
               </div>
             );
           })}

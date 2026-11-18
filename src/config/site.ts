@@ -22,10 +22,10 @@ export const siteConfig = {
   ],
   megaMenu: {
     tabs: [
-      { label: "Khách sạn", href: "#luu-tru", active: true },
-      { label: "Các thương hiệu", href: "#uu-dai", active: false },
-      { label: "Khơi nguồn cảm hứng", href: "#hoat-dong", active: false },
-      { label: "MeliáRewards", href: "#dang-nhap", active: false },
+      { id: "hotels", label: "Khách sạn" },
+      { id: "brands", label: "Các thương hiệu" },
+      { id: "inspiration", label: "Khơi nguồn cảm hứng" },
+      { id: "rewards", label: "RiverRewards" },
     ],
     sidebar: {
       eyebrow: "KHÁCH SẠN",
