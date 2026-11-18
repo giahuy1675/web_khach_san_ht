@@ -34,19 +34,7 @@ export default function BookingSearchBar() {
     petsIncluded: false,
   });
   const [discountCategory, setDiscountCategory] = useState<DiscountCategory>(null);
-  const {
-    isPinned,
-    isHidden,
-    isAnimating,
-    travelY,
-    tabsTravelY,
-    slotHeight,
-    tabsHeight,
-    slotRef,
-    tabsSlotRef,
-    tabsRef,
-    formRef,
-  } = useAnimatedBookingPin();
+  const { isPinned, isHidden, slotHeight, slotRef, formRef } = useAnimatedBookingPin();
 
   const closePopover = useCallback(() => {
     setActivePopover(null);
@@ -92,23 +80,18 @@ export default function BookingSearchBar() {
   }, []);
 
   const slotStyle = isPinned && slotHeight !== null ? { height: slotHeight } : undefined;
-  const formStyle = isPinned ? { transform: `translateY(${travelY}px)` } : undefined;
-  const tabsSlotStyle = isPinned && tabsHeight !== null ? { height: tabsHeight } : undefined;
-  const tabsStyle = isPinned ? { transform: `translateY(${tabsTravelY}px)` } : undefined;
 
   return (
     <>
-      <div ref={tabsSlotRef} className={styles.tabsSlot} style={tabsSlotStyle}>
+      <div className={styles.tabsSlot}>
         <div
-          ref={tabsRef}
           className={[
             styles.tabsOuter,
-            isPinned || isHidden ? styles.tabsHidden : "",
+            isPinned ? styles.tabsHidden : "",
             activePopover ? styles.popoverOpen : "",
           ]
             .filter(Boolean)
             .join(" ")}
-          style={tabsStyle}
         >
           <div className={styles.tabs} aria-label={bookingSearchConfig.tabsLabel}>
             <span className={styles.activeTab}>{bookingSearchConfig.tabs.hotel}</span>
@@ -127,13 +110,11 @@ export default function BookingSearchBar() {
           className={[
             styles.searchForm,
             isPinned ? styles.pinned : "",
-            isHidden ? styles.formHidden : "",
-            isAnimating ? styles.animated : "",
+            isPinned && isHidden ? styles.formHidden : "",
             activePopover ? styles.popoverOpen : "",
           ]
             .filter(Boolean)
             .join(" ")}
-          style={formStyle}
           action="#luu-tru"
           method="get"
           role="search"

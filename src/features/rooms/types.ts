@@ -3,6 +3,7 @@ export type RoomDto = {
   name: string;
   description: string;
   maxOccupancy: number;
+  highlights: string[];
 };
 
 export type Room = {
@@ -10,4 +11,5 @@ export type Room = {
   name: string;
   description: string;
   maxGuests: number;
+  highlights: string[];
 };

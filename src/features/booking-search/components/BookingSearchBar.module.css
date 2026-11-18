@@ -9,13 +9,6 @@
   margin: 0 0 0 max(16px, calc((100vw - 1398px) / 2));
 }
 
-.tabsHidden,
-.formHidden {
-  visibility: hidden;
-  opacity: 0;
-  pointer-events: none;
-}
-
 .tabsHidden {
   display: none;
 }
@@ -73,14 +66,39 @@
   left: 0;
   width: 100%;
   max-width: none;
-  min-height: 56px;
-  grid-template-columns: 1.2fr 0.8fr 1.1fr 1fr 0.75fr;
+  min-height: 44px;
+  grid-template-columns: 266px 174px 241px 177px minmax(0, 1fr);
   margin: 0;
+  padding-left: 8px;
   border-right: 0;
   border-left: 0;
   background: #f7f7f7;
-  box-shadow: 0 4px 12px rgb(0 0 0 / 8%);
-  will-change: transform, opacity;
+  box-shadow: none;
+  font-size: 15px;
+  animation: pin-in 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition:
+    transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 0s;
+  will-change: transform;
+}
+
+.formHidden {
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-100%);
+  transition:
+    transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 0s linear 300ms;
+}
+
+@keyframes pin-in {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
 }
 
 .popoverOpen {
@@ -209,28 +227,53 @@
 }
 
 .pinned .field {
-  min-height: 56px;
+  min-height: 44px;
+  gap: 12px;
   border-bottom: 0;
-  padding-right: clamp(12px, 2vw, 32px);
-  padding-left: clamp(12px, 2vw, 32px);
+  padding-right: 32px;
+  padding-left: 32px;
+  border-right: 0.8px solid #ebebeb;
+}
+
+.pinned .field > svg {
+  width: 20px;
+  height: 20px;
+}
+
+.pinned .field input,
+.pinned .field select,
+.pinned .dateField input,
+.pinned .fieldButton {
+  font-size: 15px;
 }
 
 .pinned .fieldButton {
   background: transparent;
+  transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pinned .fieldButton:hover {
+  background: transparent;
+  color: var(--color-muted);
 }
 
 .pinned .searchButton {
-  min-height: 56px;
-  margin: 0;
+  min-height: 44px;
+  width: 183px;
+  justify-self: end;
+  margin: 0 40px 0 0;
   background: transparent;
   color: var(--color-ink);
+  font-size: 15px;
   text-decoration: underline;
   text-underline-offset: 4px;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .pinned .searchButton:hover,
 .pinned .searchButton:focus-visible {
-  background: #ededed;
+  background: transparent;
+  color: var(--color-muted);
 }
 
 .visuallyHidden {
@@ -267,17 +310,21 @@
   }
 
   .pinned {
-    min-height: 56px;
+    min-height: 44px;
+    padding-left: 0;
     grid-template-columns: 1.4fr 1fr 0.8fr 0.8fr 56px;
   }
 
   .pinned .searchButton {
-    min-height: 56px;
+    width: auto;
+    min-height: 44px;
     margin: 0;
   }
 
   .pinned .field {
-    min-height: 56px;
+    min-height: 44px;
+    padding-right: clamp(12px, 2vw, 32px);
+    padding-left: clamp(12px, 2vw, 32px);
     border-bottom: 0;
   }
 }
@@ -356,11 +403,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animated {
-    transition: none;
-  }
-
-  .pinned {
+  .pinned,
+  .formHidden {
     animation: none;
+    transition: none;
   }
 }

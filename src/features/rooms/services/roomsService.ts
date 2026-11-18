@@ -12,7 +12,9 @@ function isRoomDto(value: unknown): value is RoomDto {
     typeof room.roomId === "string" &&
     typeof room.name === "string" &&
     typeof room.description === "string" &&
-    typeof room.maxOccupancy === "number"
+    typeof room.maxOccupancy === "number" &&
+    Array.isArray(room.highlights) &&
+    room.highlights.every((item) => typeof item === "string")
   );
 }
 
@@ -22,6 +24,7 @@ function mapRoomDto(dto: RoomDto): Room {
     name: dto.name,
     description: dto.description,
     maxGuests: dto.maxOccupancy,
+    highlights: dto.highlights,
   };
 }
 

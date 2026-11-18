@@ -10,6 +10,14 @@ export const homeContent = {
     loadingMessage: "Đang tải thông tin phòng...",
     emptyMessage: "Thông tin phòng sẽ được cập nhật sớm.",
     errorMessage: "Không thể tải thông tin phòng.",
+    ctaLabel: "Xem phòng trống",
+    ctaHref: "#lien-he",
+    gallery: [
+      "/images/mega-menu/stay.jpg",
+      "/images/mega-menu/ha-tien.jpg",
+      "/images/mega-menu/dining.jpg",
+      "/images/mega-menu/explore.jpg",
+    ],
   },
   dining: {
     eyebrow: "ẨM THỰC",
