@@ -23,7 +23,7 @@ export const siteConfig = {
   megaMenu: {
     tabs: [
       { label: "Khách sạn", href: "#luu-tru", active: true },
-      { label: "Các chương hiệu", href: "#uu-dai", active: false },
+      { label: "Các thương hiệu", href: "#uu-dai", active: false },
       { label: "Khơi nguồn cảm hứng", href: "#hoat-dong", active: false },
       { label: "MeliáRewards", href: "#dang-nhap", active: false },
     ],
@@ -32,7 +32,7 @@ export const siteConfig = {
       description: "Trải nghiệm du lịch thực sự khó quên",
       heading: "Các điểm đến",
       links: [
-        { label: "Để xuất của chúng tôi", href: "#uu-dai" },
+        { label: "Đề xuất của chúng tôi", href: "#uu-dai" },
         { label: "Các loại khách sạn", href: "#luu-tru" },
       ],
       contactLabel: "Liên hệ khách sạn",

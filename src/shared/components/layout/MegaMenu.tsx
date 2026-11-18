@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { siteConfig } from "@/config/site";
 import styles from "./MegaMenu.module.css";
 
@@ -12,6 +12,13 @@ type MegaMenuProps = {
 
 export default function MegaMenu({ onClose }: MegaMenuProps) {
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const { tabs, sidebar } = siteConfig.megaMenu;
+  const subLinks = [
+    { label: sidebar.heading, href: sidebar.links[0].href },
+    ...sidebar.links,
+    { label: sidebar.contactLabel, href: sidebar.contactHref },
+  ];
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow;
@@ -134,6 +141,50 @@ export default function MegaMenu({ onClose }: MegaMenuProps) {
             ))}
           </nav>
         </div>
+
+        <nav className={styles.accordion} aria-label={siteConfig.primaryNavigationLabel}>
+          {tabs.map((tab, index) => {
+            const expandable = index === 0;
+            const expanded = expandable && openIndex === index;
+
+            return (
+              <div key={tab.label} className={styles.accordionItem}>
+                {expandable ? (
+                  <button
+                    className={styles.accordionTrigger}
+                    type="button"
+                    aria-expanded={expanded}
+                    onClick={() => setOpenIndex(expanded ? null : index)}
+                  >
+                    {tab.label}
+                    <svg
+                      className={`${styles.chevron} ${expanded ? styles.chevronOpen : ""}`}
+                      viewBox="0 0 16 16"
+                      aria-hidden="true"
+                    >
+                      <path d="m3 10 5-5 5 5" />
+                    </svg>
+                  </button>
+                ) : (
+                  <a className={styles.accordionTrigger} href={tab.href} onClick={onClose}>
+                    {tab.label}
+                  </a>
+                )}
+                {expandable && (
+                  <div className={`${styles.accordionPanel} ${expanded ? styles.panelOpen : ""}`}>
+                    <div className={styles.accordionPanelInner}>
+                      {subLinks.map((item) => (
+                        <a key={item.label} href={item.href} onClick={onClose}>
+                          {item.label}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </nav>
       </section>
     </div>
   );
