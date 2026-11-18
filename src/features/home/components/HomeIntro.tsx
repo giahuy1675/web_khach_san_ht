@@ -19,6 +19,11 @@ export default function HomeIntro() {
         <h1 id="home-title" className={styles.title}>
           {homeContent.intro.title}
         </h1>
+        <div className={styles.stars} aria-label="Khách sạn 5 sao">
+          {Array.from({ length: 5 }).map((_, index) => (
+            <span key={index} aria-hidden="true">✦</span>
+          ))}
+        </div>
       </div>
 
       <figure className={styles.visual} aria-hidden="true">

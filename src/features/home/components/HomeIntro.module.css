@@ -2,7 +2,7 @@
   position: relative;
   isolation: isolate;
   display: grid;
-  min-height: clamp(360px, 65svh, 520px);
+  min-height: clamp(420px, 70svh, 540px);
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   overflow-x: clip;
   overflow-y: visible;
@@ -34,15 +34,25 @@
 }
 
 .title {
-  max-width: 8ch;
+  max-width: 10ch;
   margin: 36px 0 0;
   color: var(--color-ink);
   font-family: var(--font-brand);
-  font-size: clamp(3rem, 4.8vw, 4.5rem);
+  font-size: clamp(3.25rem, 4.8vw, 4.5rem);
   font-weight: 400;
   letter-spacing: -0.035em;
   line-height: 1.04;
   white-space: pre-line;
+}
+
+.stars {
+  display: flex;
+  gap: 7px;
+  margin-top: 24px;
+  color: #9facc4;
+  font-family: var(--font-sans);
+  font-size: 19px;
+  line-height: 1;
 }
 
 .visual {
