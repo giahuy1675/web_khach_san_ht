@@ -1,7 +1,7 @@
 export const homeContent = {
   intro: {
     eyebrow: "HÀ TIÊN, VIỆT NAM",
-    title: "River\nHotel\nHà Tiên",
+    title: "River Hotel\nHà Tiên",
     image: "/images/mega-menu/stay.jpg",
     featured: {
       title: "Phòng cao cấp",

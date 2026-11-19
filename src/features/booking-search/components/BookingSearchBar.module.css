@@ -107,6 +107,16 @@
   transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+.fieldGroup {
+  display: contents;
+}
+
+.fieldLabel,
+.modalHeader,
+.modalTabs {
+  display: none;
+}
+
 .field {
   display: flex;
   min-width: 0;
@@ -317,97 +327,253 @@
     grid-column: 1 / -1;
     margin: 12px;
   }
-
-  .pinned {
-    min-height: 44px;
-    padding-left: 0;
-    grid-template-columns: 1.4fr 1fr 0.8fr 0.8fr 56px;
-  }
-
-  .pinned .searchButton {
-    width: auto;
-    min-height: 44px;
-    margin: 0;
-  }
-
-  .pinned .field {
-    min-height: 44px;
-    padding-right: clamp(12px, 2vw, 32px);
-    padding-left: clamp(12px, 2vw, 32px);
-    border-bottom: 0;
-  }
 }
 
-@media (max-width: 820px) {
-  .pinned {
-    top: var(--spacing-header-mobile);
-  }
-}
-
-@media (max-width: 600px) {
-  .tabsOuter,
-  .searchForm:not(.pinned) {
-    width: calc(100% - 32px);
-  }
-
-  .tabs {
-    min-height: 44px;
-  }
-
+@media (max-width: 900px) {
+  /* Điện thoại: form mở dạng toàn màn hình khi bấm nút cố định ở đáy. */
   .tabsSlot {
-    min-height: 44px;
+    display: none;
   }
 
-  .activeTab,
-  .inactiveTab {
-    min-width: 0;
-    padding: 0 14px;
-    font-size: 13px;
+  .searchSlot {
+    position: static;
+    z-index: auto;
+    height: 0 !important;
   }
 
-  .pinned {
-    top: var(--spacing-header-mobile);
+  .searchForm {
+    display: none;
+  }
+
+  .searchForm.modalOpen {
+    position: fixed;
+    z-index: 20;
+    inset: 0;
+    display: flex;
     width: 100%;
+    min-height: 0;
+    flex-direction: column;
+    margin: 0;
+    border: 0;
+    overflow-y: auto;
+    background: #fff;
+    box-shadow: none;
+    animation: modal-in 300ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  .field {
-    min-height: 68px;
-    gap: 8px;
-    padding: 0 12px;
+  .modalHeader {
+    position: relative;
+    display: flex;
+    height: 64px;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #ebebeb;
   }
 
-  .field > svg {
+  .modalHeader h2 {
+    margin: 0;
+    font-family: var(--font-brand);
+    font-size: 24px;
+    font-weight: 400;
+  }
+
+  .modalClose {
+    position: absolute;
+    right: 12px;
+    display: grid;
+    width: 40px;
+    height: 40px;
+    place-items: center;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: var(--color-muted);
+    cursor: pointer;
+  }
+
+  .modalClose svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.3;
+  }
+
+  .modalTabs {
+    display: flex;
+    flex: 0 0 auto;
+    margin: 16px 24px 0;
+  }
+
+  .fieldGroup {
+    display: block;
+    flex: 0 0 auto;
+    margin: 24px 24px 0;
+  }
+
+  .fieldGroup:last-of-type {
+    margin-bottom: 32px;
+  }
+
+  .fieldLabel {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .searchForm .field {
+    min-height: 56px;
+    gap: 12px;
+    border: 1px solid #d9d9d9;
+    padding: 0 16px;
+  }
+
+  .searchForm .field input,
+  .searchForm .fieldButton {
+    font-size: 14px;
+  }
+
+  .searchForm .searchButton {
+    min-height: 56px;
+    flex: 0 0 auto;
+    margin: auto 24px 24px;
+    font-size: 15px;
+  }
+}
+
+/* Tiện ích nổi: Nút gọi, Tìm kiếm, Back to top */
+.floatingActions {
+  position: fixed;
+  z-index: 15;
+  right: 24px;
+  bottom: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  pointer-events: none;
+  transition:
+    opacity 260ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 260ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.floatingActionsHidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+}
+
+.fabButton {
+  position: relative;
+  display: flex;
+  width: 50px;
+  height: 50px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #1a1a1a;
+  color: #ffffff;
+  box-shadow: 0 5px 16px rgb(0 0 0 / 28%), 0 2px 5px rgb(0 0 0 / 14%);
+  cursor: pointer;
+  pointer-events: auto;
+  text-decoration: none;
+  padding: 0;
+  outline: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    transform 220ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    background-color 200ms ease,
+    box-shadow 200ms ease,
+    border-color 200ms ease;
+}
+
+.fabButton:hover {
+  background: #000000;
+  color: #ffffff;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 38%);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.fabButton:active {
+  transform: scale(0.92);
+  background: #2b2b2b;
+}
+
+.fabButton:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 3px;
+}
+
+.fabIcon {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+.callFab {
+  color: #ffffff;
+}
+
+.searchFab {
+  color: #ffffff;
+}
+
+.backToTopFab {
+  color: #ffffff;
+}
+
+.backToTopText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-size: 8.5px;
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: 0.8px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.backToTopText span {
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .floatingActions {
+    right: 16px;
+    bottom: max(16px, env(safe-area-inset-bottom));
+    gap: 10px;
+  }
+
+  .fabButton {
+    width: 48px;
+    height: 48px;
+  }
+
+  .fabIcon {
     width: 20px;
     height: 20px;
   }
 
-  .field input,
-  .field select,
-  .dateField input {
-    font-size: 13px;
-  }
-
-  .dateField {
-    gap: 5px;
+  .backToTopText {
+    font-size: 8px;
+    letter-spacing: 0.7px;
   }
 }
 
-@media (max-width: 390px) {
-  .searchForm:not(.pinned) {
-    grid-template-columns: 1fr;
-  }
-
-  .pinned {
-    grid-template-columns: 1fr 1fr 56px;
-  }
-
-  .pinned .destinationField,
-  .pinned .discountField {
-    display: none;
-  }
-
-  .field {
-    border-right: 0;
+@keyframes modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
   }
 }
 

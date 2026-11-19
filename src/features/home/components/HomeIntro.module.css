@@ -36,11 +36,11 @@
 }
 
 .title {
-  max-width: 10ch;
+  max-width: 12ch;
   margin: 36px 0 0;
   color: var(--color-ink);
   font-family: var(--font-brand);
-  font-size: clamp(3.25rem, 4.8vw, 4.5rem);
+  font-size: clamp(3.5rem, 5.8vw, 5.5rem);
   font-weight: 400;
   letter-spacing: -0.035em;
   line-height: 1.04;
@@ -104,9 +104,9 @@
   }
 
   .title {
-    max-width: 10ch;
+    max-width: 12ch;
     margin-top: 24px;
-    font-size: clamp(3rem, 9vw, 4.5rem);
+    font-size: clamp(3rem, 10vw, 4.75rem);
   }
 
   .visual {

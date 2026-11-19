@@ -83,50 +83,62 @@ export default function BookingSearchFields({
 
   return (
     <>
-      <label className={`${styles.field} ${styles.destinationField}`}>
-        <SearchIcon />
-        <input
-          aria-label={bookingSearchConfig.destinationLabel}
-          defaultValue={bookingSearchConfig.destination}
-          name="destination"
-        />
-      </label>
+      <div className={styles.fieldGroup}>
+        <span className={styles.fieldLabel}>{bookingSearchConfig.fieldLabels.destination}</span>
+        <label className={`${styles.field} ${styles.destinationField}`}>
+          <SearchIcon />
+          <input
+            aria-label={bookingSearchConfig.destinationLabel}
+            defaultValue={bookingSearchConfig.destination}
+            name="destination"
+          />
+        </label>
+      </div>
 
-      <button
-        className={`${styles.field} ${styles.fieldButton} ${styles.dateField}`}
-        type="button"
-        aria-label={`${bookingSearchConfig.checkInLabel} – ${bookingSearchConfig.checkOutLabel}`}
-        aria-haspopup="dialog"
-        aria-expanded={activePopover === "dates"}
-        onClick={(event) => onOpenPopover("dates", event.currentTarget)}
-      >
-        <CalendarIcon />
-        <span>{dateLabel}</span>
-      </button>
+      <div className={styles.fieldGroup}>
+        <span className={styles.fieldLabel}>{bookingSearchConfig.fieldLabels.date}</span>
+        <button
+          className={`${styles.field} ${styles.fieldButton} ${styles.dateField}`}
+          type="button"
+          aria-label={`${bookingSearchConfig.checkInLabel} – ${bookingSearchConfig.checkOutLabel}`}
+          aria-haspopup="dialog"
+          aria-expanded={activePopover === "dates"}
+          onClick={(event) => onOpenPopover("dates", event.currentTarget)}
+        >
+          <CalendarIcon />
+          <span>{dateLabel}</span>
+        </button>
+      </div>
 
-      <button
-        className={`${styles.field} ${styles.fieldButton} ${styles.guestsField}`}
-        type="button"
-        aria-label={bookingSearchConfig.guestsLabel}
-        aria-haspopup="dialog"
-        aria-expanded={activePopover === "guests"}
-        onClick={(event) => onOpenPopover("guests", event.currentTarget)}
-      >
-        <GuestsIcon />
-        <span>{guestsLabel}</span>
-      </button>
+      <div className={styles.fieldGroup}>
+        <span className={styles.fieldLabel}>{bookingSearchConfig.fieldLabels.guests}</span>
+        <button
+          className={`${styles.field} ${styles.fieldButton} ${styles.guestsField}`}
+          type="button"
+          aria-label={bookingSearchConfig.guestsLabel}
+          aria-haspopup="dialog"
+          aria-expanded={activePopover === "guests"}
+          onClick={(event) => onOpenPopover("guests", event.currentTarget)}
+        >
+          <GuestsIcon />
+          <span>{guestsLabel}</span>
+        </button>
+      </div>
 
-      <button
-        className={`${styles.field} ${styles.fieldButton} ${styles.discountField}`}
-        type="button"
-        aria-label={bookingSearchConfig.discountLabel}
-        aria-haspopup="dialog"
-        aria-expanded={activePopover === "discount"}
-        onClick={(event) => onOpenPopover("discount", event.currentTarget)}
-      >
-        <DiscountIcon />
-        <span>{bookingSearchConfig.discountLabel}</span>
-      </button>
+      <div className={styles.fieldGroup}>
+        <span className={styles.fieldLabel}>{bookingSearchConfig.fieldLabels.discount}</span>
+        <button
+          className={`${styles.field} ${styles.fieldButton} ${styles.discountField}`}
+          type="button"
+          aria-label={bookingSearchConfig.discountLabel}
+          aria-haspopup="dialog"
+          aria-expanded={activePopover === "discount"}
+          onClick={(event) => onOpenPopover("discount", event.currentTarget)}
+        >
+          <DiscountIcon />
+          <span>{bookingSearchConfig.discountLabel}</span>
+        </button>
+      </div>
 
       <input readOnly type="hidden" name="checkIn" value={dateRange.checkIn ?? ""} />
       <input readOnly type="hidden" name="checkOut" value={dateRange.checkOut ?? ""} />

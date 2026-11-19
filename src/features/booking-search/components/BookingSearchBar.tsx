@@ -1,7 +1,8 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { bookingSearchConfig } from "@/config/bookingSearch";
+import { siteConfig } from "@/config/site";
 import type {
   BookingDateRange,
   BookingPopoverKind,
@@ -34,7 +35,30 @@ export default function BookingSearchBar() {
     petsIncluded: false,
   });
   const [discountCategory, setDiscountCategory] = useState<DiscountCategory>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { isPinned, slotHeight, slotRef, formRef } = useAnimatedBookingPin();
+
+  // Trên điện thoại form mở dạng toàn màn hình: khóa cuộn nền, Esc để đóng.
+  useEffect(() => {
+    if (!isModalOpen) {
+      return;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsModalOpen(false);
+      }
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isModalOpen]);
 
   const closePopover = useCallback(() => {
     setActivePopover(null);
@@ -79,6 +103,21 @@ export default function BookingSearchBar() {
     setDiscountCategory(category);
   }, []);
 
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
+
+  const handleSearchClick = useCallback(() => {
+    if (typeof window !== "undefined" && window.innerWidth <= 900) {
+      setIsModalOpen(true);
+    } else {
+      slotRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  }, [slotRef]);
+
   const slotStyle = isPinned && slotHeight !== null ? { height: slotHeight } : undefined;
 
   return (
@@ -110,6 +149,7 @@ export default function BookingSearchBar() {
           className={[
             styles.searchForm,
             isPinned ? styles.pinned : "",
+            isModalOpen ? styles.modalOpen : "",
             activePopover ? styles.popoverOpen : "",
           ]
             .filter(Boolean)
@@ -117,7 +157,26 @@ export default function BookingSearchBar() {
           action="#luu-tru"
           method="get"
           role="search"
+          onSubmit={() => setIsModalOpen(false)}
         >
+          <div className={styles.modalHeader}>
+            <h2>{bookingSearchConfig.modal.title}</h2>
+            <button
+              className={styles.modalClose}
+              type="button"
+              aria-label={bookingSearchConfig.modal.closeLabel}
+              onClick={() => setIsModalOpen(false)}
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m5 5 14 14M19 5 5 19" />
+              </svg>
+            </button>
+          </div>
+          <div className={styles.modalTabs} aria-label={bookingSearchConfig.tabsLabel}>
+            <span className={styles.activeTab}>{bookingSearchConfig.tabs.hotel}</span>
+            <span className={styles.inactiveTab}>{bookingSearchConfig.tabs.package}</span>
+          </div>
+
           <BookingSearchFields
             dateRange={dateRange}
             guests={guests}
@@ -130,6 +189,73 @@ export default function BookingSearchBar() {
           </button>
         </form>
       </div>
+
+      <aside
+        className={`${styles.floatingActions} ${isModalOpen ? styles.floatingActionsHidden : ""}`}
+        aria-label="Tiện ích nhanh"
+      >
+        {/* Nút Gọi Hotline */}
+        <a
+          href={`tel:${siteConfig.footer.phone.replace(/\s+/g, "")}`}
+          className={`${styles.fabButton} ${styles.callFab}`}
+          aria-label={`Gọi hotline ${siteConfig.footer.phone}`}
+          title={`Gọi hotline: ${siteConfig.footer.phone}`}
+        >
+          <svg
+            viewBox="0 0 24 24"
+            className={styles.fabIcon}
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+            <path d="M14.05 2a9 9 0 0 1 8 7.94" />
+            <path d="M14.05 6A5 5 0 0 1 18 10" />
+          </svg>
+        </a>
+
+        {/* Nút Tìm kiếm (thay cho nút tìm kiếm bự ở màn điện thoại) */}
+        <button
+          type="button"
+          className={`${styles.fabButton} ${styles.searchFab}`}
+          aria-haspopup="dialog"
+          aria-label={bookingSearchConfig.modal.openLabel}
+          title={bookingSearchConfig.modal.openLabel}
+          onClick={handleSearchClick}
+        >
+          <svg
+            viewBox="0 0 24 24"
+            className={styles.fabIcon}
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <circle cx="11" cy="11" r="7" />
+            <path d="m16.5 16.5 4.5 4.5" />
+          </svg>
+        </button>
+
+        {/* Nút Back to top */}
+        <button
+          type="button"
+          className={`${styles.fabButton} ${styles.backToTopFab}`}
+          onClick={scrollToTop}
+          aria-label="Cuộn lên đầu trang"
+          title="Về đầu trang"
+        >
+          <span className={styles.backToTopText}>
+            <span>BACK</span>
+            <span>TO</span>
+            <span>TOP</span>
+          </span>
+        </button>
+      </aside>
 
       {activePopover && popoverAnchor && (
         <BookingPopover

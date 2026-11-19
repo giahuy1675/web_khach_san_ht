@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 
 const PIN_OFFSET = 24;
+// Dưới ngưỡng này thanh tìm kiếm xếp nhiều hàng nên không ghim (tránh để lại khoảng trống lớn).
+const PIN_MEDIA_QUERY = "(min-width: 1101px)";
 
 export default function useAnimatedBookingPin() {
   const [isPinned, setIsPinned] = useState(false);
@@ -11,12 +13,13 @@ export default function useAnimatedBookingPin() {
   const formRef = useRef<HTMLFormElement>(null);
 
   useEffect(() => {
+    const media = window.matchMedia(PIN_MEDIA_QUERY);
     let pinned = false;
     let frame = 0;
 
     const update = () => {
       frame = 0;
-      const shouldPin = window.scrollY > PIN_OFFSET;
+      const shouldPin = media.matches && window.scrollY > PIN_OFFSET;
 
       if (shouldPin === pinned) {
         return;
@@ -41,9 +44,11 @@ export default function useAnimatedBookingPin() {
 
     update();
     window.addEventListener("scroll", handleScroll, { passive: true });
+    media.addEventListener("change", handleScroll);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      media.removeEventListener("change", handleScroll);
       window.cancelAnimationFrame(frame);
     };
   }, []);

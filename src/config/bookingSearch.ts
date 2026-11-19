@@ -18,4 +18,15 @@ export const bookingSearchConfig = {
   discountLabel: "Mã giảm giá",
   searchLabel: "Tìm kiếm",
   editLabel: "Chỉnh sửa tìm kiếm",
+  modal: {
+    title: "Tìm kiếm",
+    openLabel: "Tìm kiếm phòng",
+    closeLabel: "Đóng",
+  },
+  fieldLabels: {
+    destination: "Khách sạn, thành phố hoặc điểm đến",
+    date: "Lịch",
+    guests: "Khách",
+    discount: "Loại chiết khấu",
+  },
 } as const;
