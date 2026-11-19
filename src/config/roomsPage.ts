@@ -1,3 +1,5 @@
+import { assetPath } from "@/shared/lib/assets";
+
 export const roomsPageContent = {
   metaTitle: "Phòng – River Hotel Hà Tiên",
   title: "Phòng và trải nghiệm",
@@ -72,11 +74,11 @@ export const roomsPageContent = {
     previousLabel: "Ảnh trước",
     nextLabel: "Ảnh tiếp theo",
     images: [
-      { src: "/images/mega-menu/stay.jpg", alt: "Phòng nghỉ River Hotel" },
-      { src: "/images/mega-menu/ha-tien.jpg", alt: "Không gian ngoài trời" },
-      { src: "/images/mega-menu/dining.jpg", alt: "Khu vực ăn uống" },
-      { src: "/images/mega-menu/explore.jpg", alt: "Cảnh quan Hà Tiên" },
-      { src: "/images/mega-menu/stay.jpg", alt: "Phòng nghỉ River Hotel" },
+      { src: assetPath("/images/mega-menu/stay.jpg"), alt: "Phòng nghỉ River Hotel" },
+      { src: assetPath("/images/mega-menu/ha-tien.jpg"), alt: "Không gian ngoài trời" },
+      { src: assetPath("/images/mega-menu/dining.jpg"), alt: "Khu vực ăn uống" },
+      { src: assetPath("/images/mega-menu/explore.jpg"), alt: "Cảnh quan Hà Tiên" },
+      { src: assetPath("/images/mega-menu/stay.jpg"), alt: "Phòng nghỉ River Hotel" },
     ],
   },
 } as const;

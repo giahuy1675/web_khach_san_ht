@@ -1,8 +1,10 @@
+import { assetPath } from "@/shared/lib/assets";
+
 const images = {
-  stay: "/images/mega-menu/stay.jpg",
-  haTien: "/images/mega-menu/ha-tien.jpg",
-  dining: "/images/mega-menu/dining.jpg",
-  explore: "/images/mega-menu/explore.jpg",
+  stay: assetPath("/images/mega-menu/stay.jpg"),
+  haTien: assetPath("/images/mega-menu/ha-tien.jpg"),
+  dining: assetPath("/images/mega-menu/dining.jpg"),
+  explore: assetPath("/images/mega-menu/explore.jpg"),
 } as const;
 
 export const megaMenuPanels = {

@@ -1,3 +1,5 @@
+import { assetPath } from "@/shared/lib/assets";
+
 export const footerContent = {
   columns: [
     {
@@ -55,7 +57,7 @@ export const footerContent = {
     buttonLabel: "Tải xuống ỨNG DỤNG của chúng tôi",
     buttonHref: "#lien-he",
     phoneTitle: "River Hotel Hà Tiên",
-    phoneImage: "/images/mega-menu/stay.jpg",
+    phoneImage: assetPath("/images/mega-menu/stay.jpg"),
   },
   legalLinks: [
     { label: "Điều khoản sử dụng", href: "#lien-he" },

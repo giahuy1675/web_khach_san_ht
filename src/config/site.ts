@@ -1,3 +1,5 @@
+import { assetPath } from "@/shared/lib/assets";
+
 const sectionIds = {
   rooms: "luu-tru",
 } as const;
@@ -42,22 +44,22 @@ export const siteConfig = {
       {
         label: "Châu Á và Châu Đại Dương",
         href: "#gioi-thieu",
-        image: "/images/mega-menu/ha-tien.jpg",
+        image: assetPath("/images/mega-menu/ha-tien.jpg"),
       },
       {
         label: "Châu Âu",
         href: "#luu-tru",
-        image: "/images/mega-menu/stay.jpg",
+        image: assetPath("/images/mega-menu/stay.jpg"),
       },
       {
         label: "Châu Phi và Trung Đông",
         href: "#am-thuc",
-        image: "/images/mega-menu/dining.jpg",
+        image: assetPath("/images/mega-menu/dining.jpg"),
       },
       {
         label: "Châu Mỹ",
         href: "#gioi-thieu",
-        image: "/images/mega-menu/explore.jpg",
+        image: assetPath("/images/mega-menu/explore.jpg"),
       },
     ],
   },

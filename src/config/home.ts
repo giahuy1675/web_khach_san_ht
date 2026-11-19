@@ -1,12 +1,14 @@
+import { assetPath } from "@/shared/lib/assets";
+
 export const homeContent = {
   intro: {
     eyebrow: "HÀ TIÊN, VIỆT NAM",
     title: "River Hotel\nHà Tiên",
-    image: "/images/mega-menu/stay.jpg",
+    image: assetPath("/images/mega-menu/stay.jpg"),
     featured: {
       title: "Phòng cao cấp",
       description: "Kỳ nghỉ thoải mái nhất bên dòng sông Hà Tiên với tầm nhìn ra sông.",
-      image: "/images/mega-menu/stay.jpg",
+      image: assetPath("/images/mega-menu/stay.jpg"),
       href: "#luu-tru",
       linkLabel: "Xem Phòng cao cấp",
     },
@@ -19,10 +21,10 @@ export const homeContent = {
     errorMessage: "Không thể tải thông tin phòng.",
     ctaLabel: "Xem phòng trống",
     gallery: [
-      "/images/mega-menu/stay.jpg",
-      "/images/mega-menu/ha-tien.jpg",
-      "/images/mega-menu/dining.jpg",
-      "/images/mega-menu/explore.jpg",
+      assetPath("/images/mega-menu/stay.jpg"),
+      assetPath("/images/mega-menu/ha-tien.jpg"),
+      assetPath("/images/mega-menu/dining.jpg"),
+      assetPath("/images/mega-menu/explore.jpg"),
     ],
   },
 } as const;

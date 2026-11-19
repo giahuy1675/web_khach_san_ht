@@ -1,3 +1,5 @@
+import { assetPath } from "@/shared/lib/assets";
+
 export const recommendationsContent = {
   title: "Chúng tôi cũng đề xuất",
   priceFromLabel: "Từ",
@@ -9,7 +11,7 @@ export const recommendationsContent = {
       name: "River Resort Phú Quốc",
       city: "Phú Quốc",
       pricePerNight: 2142857,
-      image: "/images/mega-menu/ha-tien.jpg",
+      image: assetPath("/images/mega-menu/ha-tien.jpg"),
       href: "#lien-he",
     },
     {
@@ -17,7 +19,7 @@ export const recommendationsContent = {
       name: "River Villas Đà Lạt",
       city: "Đà Lạt",
       pricePerNight: 3132857,
-      image: "/images/mega-menu/explore.jpg",
+      image: assetPath("/images/mega-menu/explore.jpg"),
       href: "#lien-he",
     },
     {
@@ -25,7 +27,7 @@ export const recommendationsContent = {
       name: "River Suites Cần Thơ",
       city: "Cần Thơ",
       pricePerNight: 1257143,
-      image: "/images/mega-menu/stay.jpg",
+      image: assetPath("/images/mega-menu/stay.jpg"),
       href: "#lien-he",
     },
   ],
