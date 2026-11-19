@@ -1,5 +1,3 @@
-import { assetPath } from "@/shared/lib/assets";
-
 export const roomsPageContent = {
   metaTitle: "Phòng – River Hotel Hà Tiên",
   title: "Phòng và trải nghiệm",
@@ -74,11 +72,12 @@ export const roomsPageContent = {
     previousLabel: "Ảnh trước",
     nextLabel: "Ảnh tiếp theo",
     images: [
-      { src: assetPath("/images/mega-menu/stay.jpg"), alt: "Phòng nghỉ River Hotel" },
-      { src: assetPath("/images/mega-menu/ha-tien.jpg"), alt: "Không gian ngoài trời" },
-      { src: assetPath("/images/mega-menu/dining.jpg"), alt: "Khu vực ăn uống" },
-      { src: assetPath("/images/mega-menu/explore.jpg"), alt: "Cảnh quan Hà Tiên" },
-      { src: assetPath("/images/mega-menu/stay.jpg"), alt: "Phòng nghỉ River Hotel" },
+      { src: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1200&q=80", alt: "Phòng ngủ sang trọng hướng sông" },
+      { src: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1200&q=80", alt: "Phòng tắm đá cẩm thạch với bồn tắm riêng biệt" },
+      { src: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=1200&q=80", alt: "Nội thất tiện nghi và ánh sáng tự nhiên" },
+      { src: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1200&q=80", alt: "Khu vực tiếp khách riêng tư" },
+      { src: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80", alt: "Ban công hướng toàn cảnh sông Hà Tiên" },
+      { src: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1200&q=80", alt: "Hoàng hôn buông xuống bên dòng sông" },
     ],
   },
 } as const;

@@ -12,6 +12,12 @@ const nextConfig: NextConfig = {
   images: {
     qualities: [75, 100],
     unoptimized: isGitHubPages,
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+    ],
   },
 };
 

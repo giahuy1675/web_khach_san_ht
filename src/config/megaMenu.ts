@@ -1,12 +1,3 @@
-import { assetPath } from "@/shared/lib/assets";
-
-const images = {
-  stay: assetPath("/images/mega-menu/stay.jpg"),
-  haTien: assetPath("/images/mega-menu/ha-tien.jpg"),
-  dining: assetPath("/images/mega-menu/dining.jpg"),
-  explore: assetPath("/images/mega-menu/explore.jpg"),
-} as const;
-
 export const megaMenuPanels = {
   brands: {
     filters: [
@@ -18,15 +9,15 @@ export const megaMenuPanels = {
     exploreLabel: "Khám phá thương hiệu của chúng tôi",
     exploreHref: "#luu-tru",
     items: [
-      { name: "RIVER", caption: "HOTELS & RESORTS", tier: "luxury", href: "#luu-tru", image: images.haTien },
-      { name: "RIVER VILLAS", caption: "BY RIVER", tier: "luxury", href: "#luu-tru", image: images.stay },
-      { name: "RIVER RESORT", caption: "BY RIVER", tier: "luxury", href: "#luu-tru", image: images.dining },
-      { name: "RIVER SUITES", caption: "BY RIVER", tier: "premium", href: "#luu-tru", image: images.explore },
-      { name: "RIVER HOTEL", caption: "HÀ TIÊN", tier: "premium", href: "#luu-tru", image: images.haTien },
-      { name: "RIVER RESIDENCE", caption: "BY RIVER", tier: "premium", href: "#luu-tru", image: images.stay },
-      { name: "RIVER STAY", caption: "BY RIVER", tier: "essential", href: "#luu-tru", image: images.dining },
-      { name: "RIVER INN", caption: "BY RIVER", tier: "essential", href: "#luu-tru", image: images.explore },
-      { name: "RIVER CAMP", caption: "BY RIVER", tier: "essential", href: "#luu-tru", image: images.haTien },
+      { name: "RIVER", caption: "HOTELS & RESORTS", tier: "luxury", href: "#luu-tru", image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" },
+      { name: "RIVER VILLAS", caption: "BY RIVER", tier: "luxury", href: "#luu-tru", image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=600&q=80" },
+      { name: "RIVER RESORT", caption: "BY RIVER", tier: "luxury", href: "#luu-tru", image: "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=600&q=80" },
+      { name: "RIVER SUITES", caption: "BY RIVER", tier: "premium", href: "#luu-tru", image: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=600&q=80" },
+      { name: "RIVER HOTEL", caption: "HÀ TIÊN", tier: "premium", href: "#luu-tru", image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=600&q=80" },
+      { name: "RIVER RESIDENCE", caption: "BY RIVER", tier: "premium", href: "#luu-tru", image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80" },
+      { name: "RIVER STAY", caption: "BY RIVER", tier: "essential", href: "#luu-tru", image: "https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=600&q=80" },
+      { name: "RIVER INN", caption: "BY RIVER", tier: "essential", href: "#luu-tru", image: "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=600&q=80" },
+      { name: "RIVER CAMP", caption: "BY RIVER", tier: "essential", href: "#luu-tru", image: "https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=600&q=80" },
     ],
   },
   inspiration: {
@@ -40,9 +31,9 @@ export const megaMenuPanels = {
         subheading: "Tận hưởng niềm vui du lịch và ẩm thực cùng lúc",
         text: "Từ nhà hàng ven sông đến hải sản tươi của vùng biển Hà Tiên: những trải nghiệm ẩm thực sẽ biến mọi chuyến đi thành hành trình vị giác khó quên.",
         cards: [
-          { title: "Nhà hàng River", subtitle: "Hà Tiên", image: images.dining, href: "#am-thuc" },
-          { title: "Cà phê bên sông", subtitle: "Hà Tiên", image: images.stay, href: "#am-thuc" },
-          { title: "Hải sản địa phương", subtitle: "Hà Tiên", image: images.haTien, href: "#am-thuc" },
+          { title: "Nhà hàng River", subtitle: "Hà Tiên", image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80", href: "#am-thuc" },
+          { title: "Cà phê bên sông", subtitle: "Hà Tiên", image: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=600&q=80", href: "#am-thuc" },
+          { title: "Hải sản địa phương", subtitle: "Hà Tiên", image: "https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=600&q=80", href: "#am-thuc" },
         ],
       },
       {
@@ -52,9 +43,9 @@ export const megaMenuPanels = {
         subheading: "Khám phá thiên nhiên và văn hóa vùng đất biên giới",
         text: "Leo núi Đá Dựng, dạo quanh thành phố ven sông hay thư giãn bên hồ bơi: lịch trình linh hoạt cho mọi kỳ nghỉ.",
         cards: [
-          { title: "Núi Đá Dựng", subtitle: "Hà Tiên", image: images.explore, href: "#gioi-thieu" },
-          { title: "Thành phố ven sông", subtitle: "Hà Tiên", image: images.haTien, href: "#gioi-thieu" },
-          { title: "Hồ bơi River", subtitle: "Hà Tiên", image: images.stay, href: "#dich-vu" },
+          { title: "Núi Đá Dựng", subtitle: "Hà Tiên", image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80", href: "#gioi-thieu" },
+          { title: "Thành phố ven sông", subtitle: "Hà Tiên", image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=600&q=80", href: "#gioi-thieu" },
+          { title: "Hồ bơi River", subtitle: "Hà Tiên", image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=600&q=80", href: "#dich-vu" },
         ],
       },
       {
@@ -64,9 +55,9 @@ export const megaMenuPanels = {
         subheading: "Cẩm nang và cảm hứng cho chuyến đi của bạn",
         text: "Mẹo du lịch, lịch trình gợi ý và những câu chuyện về con người, món ăn và cảnh sắc Hà Tiên.",
         cards: [
-          { title: "Lịch trình 3 ngày", subtitle: "Cẩm nang", image: images.explore, href: "#gioi-thieu" },
-          { title: "Món ngon phải thử", subtitle: "Ẩm thực", image: images.dining, href: "#am-thuc" },
-          { title: "Nghỉ dưỡng cuối tuần", subtitle: "Gợi ý", image: images.stay, href: "#luu-tru" },
+          { title: "Lịch trình 3 ngày", subtitle: "Cẩm nang", image: "https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=600&q=80", href: "#gioi-thieu" },
+          { title: "Món ngon phải thử", subtitle: "Ẩm thực", image: "https://images.unsplash.com/photo-1533777857889-4be7c70e33f7?auto=format&fit=crop&w=600&q=80", href: "#am-thuc" },
+          { title: "Nghỉ dưỡng cuối tuần", subtitle: "Gợi ý", image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80", href: "#luu-tru" },
         ],
       },
     ],
@@ -80,21 +71,21 @@ export const megaMenuPanels = {
     moreLabel: "Tìm hiểu thêm",
     slides: [
       {
-        image: images.stay,
+        image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=600&q=80",
         heading: "Hơn cả một kỳ nghỉ",
         subheading: "Trở thành thành viên mang đến cho bạn những lợi ích độc quyền",
         text: "Tham gia RiverRewards và tích lũy, sử dụng hoặc tặng điểm khi bạn lưu trú, thưởng thức ẩm thực tại nhà hàng và thư giãn tại khu nghỉ dưỡng.",
         href: "#dang-nhap",
       },
       {
-        image: images.dining,
+        image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80",
         heading: "Ưu đãi ẩm thực",
         subheading: "Điểm thưởng cho mỗi bữa ăn tại nhà hàng",
         text: "Thành viên nhận ưu đãi riêng và quà tặng dành cho các bữa ăn tại nhà hàng của khách sạn.",
         href: "#am-thuc",
       },
       {
-        image: images.explore,
+        image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80",
         heading: "Trải nghiệm riêng",
         subheading: "Đặc quyền cho các hoạt động quanh Hà Tiên",
         text: "Dùng điểm để đổi các hoạt động và dịch vụ đón tiễn trong suốt hành trình của bạn.",

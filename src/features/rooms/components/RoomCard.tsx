@@ -13,7 +13,8 @@ type RoomCardProps = {
 };
 
 export default function RoomCard({ room }: RoomCardProps) {
-  const { gallery, ctaLabel } = homeContent.rooms;
+  const gallery = room.gallery && room.gallery.length > 0 ? room.gallery : homeContent.rooms.gallery;
+  const { ctaLabel } = homeContent.rooms;
   const [activeIndex, setActiveIndex] = useState(0);
   const goTo = (step: number) =>
     setActiveIndex((current) => (current + step + gallery.length) % gallery.length);

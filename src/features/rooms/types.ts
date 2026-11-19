@@ -5,6 +5,7 @@ export type RoomDto = {
   maxOccupancy: number;
   // Thứ tự cố định: [tầm nhìn, loại giường, diện tích]
   highlights: string[];
+  gallery?: string[];
 };
 
 export type Room = {
@@ -13,4 +14,5 @@ export type Room = {
   description: string;
   maxGuests: number;
   highlights: string[];
+  gallery?: string[];
 };

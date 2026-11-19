@@ -25,6 +25,7 @@ function mapRoomDto(dto: RoomDto): Room {
     description: dto.description,
     maxGuests: dto.maxOccupancy,
     highlights: dto.highlights,
+    gallery: dto.gallery,
   };
 }
 

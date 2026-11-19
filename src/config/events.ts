@@ -1,5 +1,3 @@
-import { assetPath } from "@/shared/lib/assets";
-
 export const eventsContent = {
   title: "Sự kiện",
   stats: [
@@ -15,6 +13,6 @@ export const eventsContent = {
   quoteHref: "#lien-he",
   galleryLabel: "Xem thư viện",
   galleryHref: "#su-kien",
-  image: assetPath("/images/mega-menu/explore.jpg"),
+  image: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80",
   imageAlt: "Phòng tổ chức sự kiện",
 } as const;
