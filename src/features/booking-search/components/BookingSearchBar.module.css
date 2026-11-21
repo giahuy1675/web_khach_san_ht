@@ -528,6 +528,13 @@
   color: #ffffff;
 }
 
+/* Ẩn nút back-to-top khi chưa cuộn đủ xa */
+.backToTopHidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px) scale(0.85);
+}
+
 .backToTopText {
   display: flex;
   flex-direction: column;

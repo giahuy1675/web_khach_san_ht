@@ -36,6 +36,7 @@ export default function BookingSearchBar() {
   });
   const [discountCategory, setDiscountCategory] = useState<DiscountCategory>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showBackToTop, setShowBackToTop] = useState(false);
   const { isPinned, slotHeight, slotRef, formRef } = useAnimatedBookingPin();
 
   // Trên điện thoại form mở dạng toàn màn hình: khóa cuộn nền, Esc để đóng.
@@ -59,6 +60,25 @@ export default function BookingSearchBar() {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [isModalOpen]);
+
+  // Hiển thị nút Back to Top khi cuộn xuống quá 400px.
+  useEffect(() => {
+    const THRESHOLD = 400;
+    let frame = 0;
+    const handleScroll = () => {
+      if (!frame) {
+        frame = window.requestAnimationFrame(() => {
+          frame = 0;
+          setShowBackToTop(window.scrollY > THRESHOLD);
+        });
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, []);
 
   const closePopover = useCallback(() => {
     setActivePopover(null);
@@ -244,7 +264,13 @@ export default function BookingSearchBar() {
         {/* Nút Back to top */}
         <button
           type="button"
-          className={`${styles.fabButton} ${styles.backToTopFab}`}
+          className={[
+            styles.fabButton,
+            styles.backToTopFab,
+            showBackToTop ? "" : styles.backToTopHidden,
+          ]
+            .filter(Boolean)
+            .join(" ")}
           onClick={scrollToTop}
           aria-label="Cuộn lên đầu trang"
           title="Về đầu trang"
