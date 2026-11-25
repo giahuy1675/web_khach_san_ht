@@ -255,11 +255,21 @@
 
   .heading,
   .carousel {
-    --card-width: calc((100cqw - var(--gutter) * 2) * 0.85);
+    --card-width: calc(100cqw - var(--gutter) * 2);
+    --gap: 12px;
   }
 
   .track {
-    gap: 16px;
+    gap: var(--gap);
+  }
+
+  .loopTrack {
+    padding: 0;
+    transform: translate3d(
+      calc(50cqw - var(--card-width) / 2 - var(--position, 0) * (var(--card-width) + var(--gap))),
+      0,
+      0
+    );
   }
 
   .cardContent h3 {

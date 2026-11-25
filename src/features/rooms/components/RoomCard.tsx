@@ -10,9 +10,10 @@ import styles from "./RoomList.module.css";
 
 type RoomCardProps = {
   room: Room;
+  ariaHidden?: boolean;
 };
 
-export default function RoomCard({ room }: RoomCardProps) {
+export default function RoomCard({ room, ariaHidden }: RoomCardProps) {
   const gallery = room.gallery && room.gallery.length > 0 ? room.gallery : homeContent.rooms.gallery;
   const { ctaLabel } = homeContent.rooms;
   const [activeIndex, setActiveIndex] = useState(0);
@@ -20,7 +21,7 @@ export default function RoomCard({ room }: RoomCardProps) {
     setActiveIndex((current) => (current + step + gallery.length) % gallery.length);
 
   return (
-    <li className={styles.card}>
+    <li className={styles.card} aria-hidden={ariaHidden}>
       <figure className={styles.image}>
         {gallery.map((src, index) => (
           <Image
