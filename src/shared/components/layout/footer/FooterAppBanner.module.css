@@ -105,7 +105,12 @@
   }
 
   .phone {
-    display: none;
+    position: relative;
+    top: auto;
+    right: auto;
+    width: min(270px, calc(100% - 48px));
+    height: 520px;
+    margin: 8px auto -180px;
   }
 }
 

@@ -58,6 +58,10 @@
 }
 
 @media (max-width: 900px) {
+  .column {
+    margin-top: 36px;
+  }
+
   .title {
     margin-bottom: 24px;
   }
