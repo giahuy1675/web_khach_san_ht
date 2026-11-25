@@ -11,7 +11,14 @@ export default function RecommendationCard({ hotel }: { hotel: Hotel }) {
   return (
     <a className={styles.card} href={hotel.href}>
       <span className={styles.media}>
-        <Image src={hotel.image} alt="" fill quality={100} sizes="(max-width: 900px) 100vw, 379px" />
+        <Image
+          src={hotel.image}
+          alt=""
+          fill
+          quality={100}
+          sizes="(max-width: 900px) 78vw, 379px"
+          draggable={false}
+        />
       </span>
       <span className={styles.name}>{hotel.name}</span>
       <span className={styles.city}>{hotel.city}</span>

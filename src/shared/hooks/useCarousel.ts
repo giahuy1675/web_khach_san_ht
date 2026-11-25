@@ -44,6 +44,7 @@ export default function useCarousel(
   options: CarouselOptions = {},
 ) {
   const snap = options.snap ?? true;
+  const [active, setActive] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const indexRef = useRef(0);
 
@@ -68,6 +69,7 @@ export default function useCarousel(
       }
       const clamped = Math.min(Math.max(nextIndex, 0), metrics.maxIndex);
       indexRef.current = clamped;
+      setActive(clamped);
       render(-Math.min(clamped * metrics.step, metrics.maxScroll), true);
     },
     [render, trackRef],
@@ -205,5 +207,5 @@ export default function useCarousel(
     };
   }, [goTo, itemCount, render, snap, trackRef]);
 
-  return { isDragging };
+  return { active, isDragging, goTo };
 }
