@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import {
   getRooms,
+  RecommendedRooms,
   RoomAmenities,
   RoomDetailIntro,
   RoomsBreadcrumb,
@@ -37,11 +38,14 @@ export async function generateMetadata({ params }: RoomPageProps): Promise<Metad
 
 export default async function RoomDetailPage({ params }: RoomPageProps) {
   const { roomId } = await params;
-  const room = await findRoom(roomId);
+  const rooms = await getRooms();
+  const room = rooms.find((item) => item.id === roomId);
 
   if (!room) {
     notFound();
   }
+
+  const otherRooms = rooms.filter((item) => item.id !== room.id);
 
   return (
     <>
@@ -49,6 +53,7 @@ export default async function RoomDetailPage({ params }: RoomPageProps) {
       <RoomsGallery />
       <RoomDetailIntro room={room} />
       <RoomAmenities />
+      <RecommendedRooms rooms={otherRooms} />
     </>
   );
 }

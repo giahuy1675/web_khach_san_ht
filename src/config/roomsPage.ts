@@ -6,8 +6,12 @@ export const roomsPageContent = {
   breadcrumbLabel: "Đường dẫn trang",
   detail: {
     bookLabel: "Đặt ngay",
+    learnMoreLabel: "Tìm hiểu thêm",
     bookHref: "/#lien-he",
     amenitiesTitle: "Phòng này có những dịch vụ gì?",
+    recommendedTitle: "Các phòng được đề xuất khác",
+    recommendedPrevLabel: "Phòng trước",
+    recommendedNextLabel: "Phòng tiếp theo",
     amenityGroups: [
       {
         id: "space",

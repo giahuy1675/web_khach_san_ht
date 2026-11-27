@@ -11,12 +11,23 @@ import styles from "./RoomList.module.css";
 type RoomCardProps = {
   room: Room;
   ariaHidden?: boolean;
+  ctaLabel?: string;
+  secondaryCtaLabel?: string;
+  allowTitleWrap?: boolean;
+  variant?: "default" | "recommended";
 };
 
-export default function RoomCard({ room, ariaHidden }: RoomCardProps) {
+export default function RoomCard({
+  room,
+  ariaHidden,
+  ctaLabel = homeContent.rooms.ctaLabel,
+  secondaryCtaLabel,
+  allowTitleWrap = false,
+  variant = "default",
+}: RoomCardProps) {
   const gallery = room.gallery && room.gallery.length > 0 ? room.gallery : homeContent.rooms.gallery;
-  const { ctaLabel } = homeContent.rooms;
   const [activeIndex, setActiveIndex] = useState(0);
+  const roomHref = `${roomsPageContent.href}/${room.id}`;
   const goTo = (step: number) =>
     setActiveIndex((current) => (current + step + gallery.length) % gallery.length);
 
@@ -68,16 +79,29 @@ export default function RoomCard({ room, ariaHidden }: RoomCardProps) {
         </div>
       </figure>
       <div className={styles.cardContent}>
-        <h3>{room.name}</h3>
+        <h3 className={allowTitleWrap ? styles.titleWrap : undefined}>{room.name}</h3>
         <ul className={styles.highlights}>
           {room.highlights.map((item) => (
             <li key={item}>{item}</li>
           ))}
         </ul>
         <p>{room.description}</p>
-        <Link className={styles.cta} href={`${roomsPageContent.href}/${room.id}`}>
-          {ctaLabel}
-        </Link>
+        {variant === "recommended" ? (
+          <div className={styles.recommendedActions}>
+            <Link className={styles.cta} href={roomHref}>
+              {ctaLabel}
+            </Link>
+            {secondaryCtaLabel ? (
+              <Link className={styles.secondaryCta} href={roomHref}>
+                {secondaryCtaLabel}
+              </Link>
+            ) : null}
+          </div>
+        ) : (
+          <Link className={styles.cta} href={roomHref}>
+            {ctaLabel}
+          </Link>
+        )}
       </div>
     </li>
   );

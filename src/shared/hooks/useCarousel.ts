@@ -45,6 +45,7 @@ export default function useCarousel(
 ) {
   const snap = options.snap ?? true;
   const [active, setActive] = useState(0);
+  const [maxIndex, setMaxIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const indexRef = useRef(0);
 
@@ -70,6 +71,7 @@ export default function useCarousel(
       const clamped = Math.min(Math.max(nextIndex, 0), metrics.maxIndex);
       indexRef.current = clamped;
       setActive(clamped);
+      setMaxIndex(metrics.maxIndex);
       render(-Math.min(clamped * metrics.step, metrics.maxScroll), true);
     },
     [render, trackRef],
@@ -89,6 +91,12 @@ export default function useCarousel(
     let lastTime = 0;
     let velocity = 0;
     let metrics = measure(track);
+    const frameId = window.requestAnimationFrame(() => {
+      const measured = measure(track);
+      if (measured) {
+        setMaxIndex(measured.maxIndex);
+      }
+    });
 
     const currentOffset = () => {
       const matrix = new DOMMatrixReadOnly(getComputedStyle(track).transform);
@@ -198,6 +206,7 @@ export default function useCarousel(
     window.addEventListener("resize", handleResize);
 
     return () => {
+      window.cancelAnimationFrame(frameId);
       track.removeEventListener("pointerdown", handleDown);
       track.removeEventListener("click", handleClick, true);
       window.removeEventListener("pointermove", handleMove);
@@ -207,5 +216,5 @@ export default function useCarousel(
     };
   }, [goTo, itemCount, render, snap, trackRef]);
 
-  return { active, isDragging, goTo };
+  return { active, maxIndex, isDragging, goTo };
 }
