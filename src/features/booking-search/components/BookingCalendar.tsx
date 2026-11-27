@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { bookingSearchConfig } from "@/config/bookingSearch";
 import type { BookingDateRange } from "../types";
 import styles from "./BookingPopover.module.css";
 
@@ -8,6 +9,8 @@ type BookingCalendarProps = {
   dateRange: BookingDateRange;
   onChange: (dateRange: BookingDateRange) => void;
   onComplete: () => void;
+  onBack?: () => void;
+  onCloseAll?: () => void;
 };
 
 type CalendarMonthProps = {
@@ -85,11 +88,23 @@ export default function BookingCalendar({
   dateRange,
   onChange,
   onComplete,
+  onBack,
+  onCloseAll,
 }: BookingCalendarProps) {
+  const [isMobile, setIsMobile] = useState(false);
   const [firstMonth, setFirstMonth] = useState(() => {
     const now = new Date();
     return new Date(now.getFullYear(), now.getMonth(), 1);
   });
+
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 900px)");
+    const update = () => setIsMobile(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
+
   const today = toDateKey(
     new Date().getFullYear(),
     new Date().getMonth(),
@@ -115,8 +130,66 @@ export default function BookingCalendar({
     }
 
     onChange({ checkIn: dateRange.checkIn, checkOut: date });
-    onComplete();
+    if (!isMobile) {
+      onComplete();
+    }
   };
+
+  if (isMobile) {
+    const mobileMonths = Array.from({ length: 12 }, (_, index) => {
+      return new Date(earliestMonth.getFullYear(), earliestMonth.getMonth() + index, 1);
+    });
+
+    return (
+      <div className={styles.mobileCalendar}>
+        <header className={styles.mobileHeader}>
+          <button
+            type="button"
+            className={styles.mobileIconButton}
+            aria-label="Quay lại"
+            onClick={onBack ?? onComplete}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m15 5-7 7 7 7" />
+            </svg>
+          </button>
+          <h2 className={styles.mobileTitle}>{bookingSearchConfig.datePlaceholder}</h2>
+          <button
+            type="button"
+            className={styles.mobileIconButton}
+            aria-label={bookingSearchConfig.modal.closeLabel}
+            onClick={onCloseAll ?? onBack ?? onComplete}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m5 5 14 14M19 5 5 19" />
+            </svg>
+          </button>
+        </header>
+
+        <div className={styles.mobileMonths}>
+          {mobileMonths.map((month) => (
+            <CalendarMonth
+              key={`${month.getFullYear()}-${month.getMonth()}`}
+              month={month}
+              today={today}
+              dateRange={dateRange}
+              onSelect={selectDate}
+            />
+          ))}
+        </div>
+
+        <footer className={styles.mobileFooter}>
+          <button
+            type="button"
+            className={styles.confirmButton}
+            onClick={onComplete}
+          >
+            Xác nhận
+          </button>
+        </footer>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.calendar}>

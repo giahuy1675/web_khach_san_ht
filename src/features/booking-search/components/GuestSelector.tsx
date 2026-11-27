@@ -4,6 +4,10 @@ import styles from "./BookingPopover.module.css";
 type GuestSelectorProps = {
   selection: GuestSelection;
   onChange: (selection: GuestSelection) => void;
+  onBack?: () => void;
+  onCloseAll?: () => void;
+  onConfirm?: () => void;
+  isMobile?: boolean;
 };
 
 type CounterProps = {
@@ -41,11 +45,15 @@ function Counter({ label, value, minimum, maximum, onChange }: CounterProps) {
   );
 }
 
-export default function GuestSelector({ selection, onChange }: GuestSelectorProps) {
+function GuestSelectorBody({
+  selection,
+  onChange,
+}: {
+  selection: GuestSelection;
+  onChange: (s: GuestSelection) => void;
+}) {
   return (
-    <div className={styles.guestSelector}>
-      <h2 className={styles.popoverTitle}>Phòng và khách</h2>
-
+    <>
       <div className={styles.roomsRow}>
         <span>Số lượng phòng</span>
         <div className={styles.counter}>
@@ -96,6 +104,66 @@ export default function GuestSelector({ selection, onChange }: GuestSelectorProp
         />
       </label>
       <p className={styles.petsHelp}>Bạn đi du lịch cùng động vật hỗ trợ?</p>
+    </>
+  );
+}
+
+export default function GuestSelector({
+  selection,
+  onChange,
+  onBack,
+  onCloseAll,
+  onConfirm,
+  isMobile,
+}: GuestSelectorProps) {
+  if (isMobile) {
+    return (
+      <div className={styles.mobileCalendar}>
+        <header className={styles.mobileHeader}>
+          <button
+            type="button"
+            className={styles.mobileIconButton}
+            aria-label="Quay lại"
+            onClick={onBack}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m15 5-7 7 7 7" />
+            </svg>
+          </button>
+          <h2 className={styles.mobileTitle}>Phòng và khách</h2>
+          <button
+            type="button"
+            className={styles.mobileIconButton}
+            aria-label="Đóng"
+            onClick={onCloseAll ?? onBack}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m5 5 14 14M19 5 5 19" />
+            </svg>
+          </button>
+        </header>
+
+        <div className={styles.mobileMonths}>
+          <GuestSelectorBody selection={selection} onChange={onChange} />
+        </div>
+
+        <footer className={styles.mobileFooter}>
+          <button
+            type="button"
+            className={styles.confirmButton}
+            onClick={onConfirm ?? onBack}
+          >
+            Xác nhận
+          </button>
+        </footer>
+      </div>
+    );
+  }
+
+  return (
+    <div className={styles.guestSelector}>
+      <h2 className={styles.popoverTitle}>Phòng và khách</h2>
+      <GuestSelectorBody selection={selection} onChange={onChange} />
     </div>
   );
 }

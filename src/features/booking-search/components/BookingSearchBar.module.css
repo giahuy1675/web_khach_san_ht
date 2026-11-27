@@ -2,7 +2,7 @@
   min-height: 42px;
 }
 
-@media (min-width: 1101px) {
+@media (min-width: 901px) {
   .tabsSlot {
     margin-top: -176px;
   }
@@ -77,14 +77,14 @@
   width: 100%;
   max-width: none;
   min-height: 44px;
-  grid-template-columns: repeat(4, max-content) minmax(0, 1fr);
+  grid-template-columns: repeat(4, minmax(0, max-content)) minmax(max-content, 1fr);
   margin: 0;
-  padding-left: 8px;
+  padding-left: clamp(8px, 1.5vw, 24px);
   border-right: 0;
   border-left: 0;
   background: #f7f7f7;
   box-shadow: none;
-  font-size: 15px;
+  font-size: clamp(13.5px, 1.35vw, 15px);
   animation: pin-in 300ms cubic-bezier(0.4, 0, 0.2, 1);
   transition:
     transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
@@ -126,7 +126,7 @@
   padding: 0 clamp(16px, 2.2vw, 40px);
 }
 
-.field > svg {
+.field>svg {
   width: 24px;
   height: 24px;
   flex: 0 0 auto;
@@ -149,7 +149,7 @@
   text-align: left;
 }
 
-.fieldButton > span {
+.fieldButton>span {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -236,32 +236,39 @@
 
 .pinned .field {
   min-height: 44px;
-  gap: 12px;
+  gap: 10px;
   border-bottom: 0;
-  padding-right: 32px;
-  padding-left: 32px;
+  padding-right: clamp(14px, 2vw, 32px);
+  padding-left: clamp(14px, 2vw, 32px);
   border-right: 0.8px solid #ebebeb;
 }
 
-.pinned .field > svg {
-  width: 20px;
-  height: 20px;
+.pinned .discountField {
+  border-right: 0;
+}
+
+.pinned .field>svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
 }
 
 .pinned .destinationField input {
-  width: 190px;
+  width: clamp(140px, 15vw, 200px);
+  text-overflow: ellipsis;
 }
 
-.pinned .fieldButton > span {
-  overflow: visible;
-  text-overflow: clip;
+.pinned .fieldButton>span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .pinned .field input,
 .pinned .field select,
 .pinned .dateField input,
 .pinned .fieldButton {
-  font-size: 15px;
+  font-size: clamp(13.5px, 1.35vw, 15px);
 }
 
 .pinned .fieldButton {
@@ -279,11 +286,11 @@
   width: auto;
   min-width: 0;
   justify-self: end;
-  margin: 0 clamp(16px, 2.8vw, 40px) 0 16px;
+  margin: 0 clamp(16px, 2.8vw, 40px) 0 12px;
   white-space: nowrap;
   background: transparent;
   color: var(--color-ink);
-  font-size: 15px;
+  font-size: clamp(13.5px, 1.35vw, 15px);
   text-decoration: underline;
   text-underline-offset: 4px;
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -305,7 +312,8 @@
   clip-path: inset(50%);
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 900px) and (min-width: 601px) {
+  /* Tablet nhỏ (601-900px): vẫn dùng layout 2 cột trước khi vào modal */
   .searchForm {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -330,6 +338,7 @@
 }
 
 @media (max-width: 900px) {
+
   /* Điện thoại: form mở dạng toàn màn hình khi bấm nút cố định ở đáy. */
   .tabsSlot {
     display: none;
@@ -403,13 +412,34 @@
   .modalTabs {
     display: flex;
     flex: 0 0 auto;
-    margin: 16px 24px 0;
+    align-items: flex-end;
+    justify-content: center;
+    margin: 20px 24px 0;
+    border-bottom: 1px solid #e6e6e6;
+  }
+
+  .modalTabs .activeTab,
+  .modalTabs .inactiveTab {
+    min-width: 0;
+    padding: 0 18px;
+    font-size: 14px;
+  }
+
+  .modalTabs .activeTab {
+    min-height: 44px;
+    margin-bottom: -1px;
+    border-bottom: 1px solid #fff;
+  }
+
+  .modalTabs .inactiveTab {
+    min-height: 36px;
+    border-bottom: 0;
   }
 
   .fieldGroup {
     display: block;
     flex: 0 0 auto;
-    margin: 24px 24px 0;
+    margin: 20px 24px 0;
   }
 
   .fieldGroup:last-of-type {
@@ -418,13 +448,14 @@
 
   .fieldLabel {
     display: block;
-    margin-bottom: 12px;
-    font-size: 16px;
-    line-height: 24px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    line-height: 22px;
   }
 
   .searchForm .field {
-    min-height: 56px;
+    width: 100%;
+    min-height: 52px;
     gap: 12px;
     border: 1px solid #d9d9d9;
     padding: 0 16px;
@@ -436,7 +467,8 @@
   }
 
   .searchForm .searchButton {
-    min-height: 56px;
+    align-self: stretch;
+    min-height: 52px;
     flex: 0 0 auto;
     margin: auto 24px 24px;
     font-size: 15px;

@@ -205,7 +205,9 @@ export default function BookingSearchBar() {
             onOpenPopover={openPopover}
           />
           <button className={styles.searchButton} type="submit">
-            {isPinned ? bookingSearchConfig.editLabel : bookingSearchConfig.searchLabel}
+            {isPinned && !isModalOpen
+              ? bookingSearchConfig.editLabel
+              : bookingSearchConfig.searchLabel}
           </button>
         </form>
       </div>
@@ -295,6 +297,10 @@ export default function BookingSearchBar() {
           discountCategory={discountCategory}
           onDiscountCategoryChange={updateDiscountCategory}
           onClose={closePopover}
+          onCloseAll={() => {
+            closePopover();
+            setIsModalOpen(false);
+          }}
         />
       )}
     </>

@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 const PIN_OFFSET = 24;
 // Dưới ngưỡng này thanh tìm kiếm xếp nhiều hàng nên không ghim (tránh để lại khoảng trống lớn).
-const PIN_MEDIA_QUERY = "(min-width: 1101px)";
+const PIN_MEDIA_QUERY = "(min-width: 901px)";
 
 export default function useAnimatedBookingPin() {
   const [isPinned, setIsPinned] = useState(false);

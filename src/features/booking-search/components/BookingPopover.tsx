@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import type {
   BookingDateRange,
   BookingPopoverKind,
@@ -24,6 +24,7 @@ type BookingPopoverProps = {
   discountCategory: DiscountCategory;
   onDiscountCategoryChange: (category: DiscountCategory) => void;
   onClose: () => void;
+  onCloseAll?: () => void;
 };
 
 const dialogLabels: Record<BookingPopoverKind, string> = {
@@ -43,9 +44,19 @@ export default function BookingPopover({
   discountCategory,
   onDiscountCategoryChange,
   onClose,
+  onCloseAll,
 }: BookingPopoverProps) {
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 900px)");
+    const update = () => setIsMobile(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
 
   useEffect(() => {
     const previousOverflow = document.body.style.overflow;
@@ -79,7 +90,9 @@ export default function BookingPopover({
 
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", handleKeyDown);
-    closeButtonRef.current?.focus();
+    if (!isMobile) {
+      closeButtonRef.current?.focus();
+    }
 
     return () => {
       document.body.style.overflow = previousOverflow;
@@ -88,7 +101,40 @@ export default function BookingPopover({
         previousFocus.focus();
       }
     };
-  }, [onClose]);
+  }, [onClose, isMobile]);
+
+  /* Trên điện thoại: guests & discount hiển thị full-screen, không có panel floating */
+  if (isMobile && (type === "guests" || type === "discount")) {
+    return (
+      <div
+        ref={dialogRef}
+        className={styles.mobileFullscreen}
+        role="dialog"
+        aria-modal="true"
+        aria-label={dialogLabels[type]}
+      >
+        {type === "guests" ? (
+          <GuestSelector
+            selection={guests}
+            onChange={onGuestsChange}
+            onBack={onClose}
+            onCloseAll={onCloseAll ?? onClose}
+            onConfirm={onClose}
+            isMobile
+          />
+        ) : (
+          <DiscountSelector
+            selectedCategory={discountCategory}
+            onChange={onDiscountCategoryChange}
+            onBack={onClose}
+            onCloseAll={onCloseAll ?? onClose}
+            onConfirm={onClose}
+            isMobile
+          />
+        )}
+      </div>
+    );
+  }
 
   return (
     <>
@@ -120,6 +166,8 @@ export default function BookingPopover({
               dateRange={dateRange}
               onChange={onDateRangeChange}
               onComplete={onDateComplete}
+              onBack={onClose}
+              onCloseAll={onCloseAll ?? onClose}
             />
           ) : type === "guests" ? (
             <GuestSelector selection={guests} onChange={onGuestsChange} />
